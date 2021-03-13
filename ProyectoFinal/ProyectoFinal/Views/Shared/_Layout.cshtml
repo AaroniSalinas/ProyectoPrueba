@@ -7,6 +7,15 @@
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        /* Modify the background color */
+        .navbar-custom {
+            background-color: #ede5db;
+        }
+        .navbar-custom .navbar-text {
+            color: #6d5b4b;
+        }
+    </style>
 </head>
 
 <!--Colores: Header: #ede5db  Footer:#6d5b4b   Intermedio: #ab8b76
@@ -14,30 +23,31 @@ Fuentes: League Spartan, League Gothic-->
 
 <body>
     <!--Barra de Navegación-->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+        
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-text" href="#">LOGO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="~/Home/Index">Home</a>
+                        <a class="nav-link active navbar-text" aria-current="page" href="~/Home/Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/Home/About">About</a>
+                        <a class="nav-link navbar-text" href="~/Home/About">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/Home/Contact">Contact</a>
+                        <a class="nav-link navbar-text" href="~/Home/Contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/Home/Formulario">Formulario</a>
+                        <a class="nav-link navbar-text" href="~/Home/Formulario">Formulario</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex ">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <button class="btn btn-outline-success navbar-text" type="submit">Buscar</button>
                 </form>
             </div>
         </div>
