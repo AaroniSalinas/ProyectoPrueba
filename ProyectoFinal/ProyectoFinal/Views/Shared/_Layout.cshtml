@@ -1,34 +1,65 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        /* Modify the background color */
+        .navbar-custom {
+            background-color: #ede5db;
+        }
+
+            .navbar-custom .navbar-text {
+                color: #6d5b4b;
+            }
+
+        .search-custom {
+            background-color: #d1b5a3;
+        }
+    </style>
 </head>
+
+<!--Colores: Header: #ede5db  Footer:#6d5b4b   Intermedio: #d1b5a3
+Fuentes: League Spartan, League Gothic-->
+
 <body>
-    <img src="hola" />
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+    <!--Barra de Navegación-->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+
+        <div class="container-fluid">
+            <a class="navbar-brand navbar-text">
+                <img src="Views/Home/LogoNavBar.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active navbar-text" aria-current="page" href="~/Home/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-text" href="~/Home/About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-text" href="~/Home/Contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-text" href="~/Home/Formulario">Formulario</a>
+                    </li>
                 </ul>
+                <form class="d-flex ">
+                    <input class="form-control me-2 search-custom" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success navbar-text" type="submit">Buscar</button>
+                </form>
             </div>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
