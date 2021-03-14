@@ -8,15 +8,17 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-        /* Modify the background color */
-        .navbar-custom {
+        /* Modify the background light */
+        .bgp-light {
             background-color: #ede5db;
         }
-        .navbar-custom .navbar-text {
-            color: #6d5b4b;
-        }
-        .search-custom {
+        /* Modify the background color */
+        .bgp-medium {
             background-color: #d1b5a3;
+        }
+        /* Modify the text color */
+        .textp-dark {
+            color: #6d5b4b;
         }
     </style>
 </head>
@@ -26,7 +28,7 @@ Fuentes: League Spartan, League Gothic-->
 
 <body>
     <!--Barra de Navegación-->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+    <nav class="navbar navbar-expand-lg fixed-top bgp-light">
 
         <div class="container-fluid">
             <!--<a class="navbar-brand navbar-text">LOGO </a>-->
@@ -39,25 +41,25 @@ Fuentes: League Spartan, League Gothic-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active navbar-text" aria-current="page" href="~/Home/Index">Home</a>
+                        <a class="nav-link active textp-dark" aria-current="page" href="~/Home/Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navbar-text" href="~/Home/About">About</a>
+                        <a class="nav-link textp-dark" href="~/Home/About">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navbar-text" href="~/Home/Contact">Contact</a>
+                        <a class="nav-link textp-dark" href="~/Home/Contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navbar-text" href="~/Home/Formulario">Formulario</a>
+                        <a class="nav-link textp-dark" href="~/Home/Formulario">Formulario</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active navbar-text" aria-current="page" href="~/Home/Registro">Registro</a>
+                        <a class="nav-link active textp-dark" aria-current="page" href="~/Home/Registro">Registro</a>
                     </li>
                 </ul>
-                <form class="d-flex ">
-                    <input class="form-control me-2 search-custom" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn search-custom " type="submit">BUSCAR</button>
-                </form>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control bgp-medium" placeholder="Buscar" aria-label="Buscar" aria-describedby="Buscar">
+                    <button class="btn bgp-medium" type="button" id="button-buscar"><i class="bi bi-search"></i></button>
+                </div>
             </div>
         </div>
     </nav>
