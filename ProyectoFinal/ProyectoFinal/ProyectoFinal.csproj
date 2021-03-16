@@ -302,6 +302,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Formulario.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Home\Carrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

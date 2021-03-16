@@ -20,7 +20,12 @@
         .textp-dark {
             color: #6d5b4b;
         }
+
+        .margin {
+            margin-top: 20px;
+        }
     </style>
+    <script src="https://kit.fontawesome.com/6599bab734.js" crossorigin="anonymous"></script>
 </head>
 
 <!--Colores: Header: #ede5db  Footer:#6d5b4b   Intermedio: #d1b5a3
@@ -55,16 +60,20 @@ Fuentes: League Spartan, League Gothic-->
                     <li class="nav-item">
                         <a class="nav-link active textp-dark" aria-current="page" href="~/Home/Registro">Registro</a>
                     </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link active textp-dark" aria-current="page" href="~/Home/Carrito"><i class="fas fa-shopping-cart"></i></a>
+                    </li>*@
                 </ul>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control bgp-medium" placeholder="Buscar" aria-label="Buscar" aria-describedby="Buscar">
                     <button class="btn bgp-medium" type="button" id="button-buscar"><i class="bi bi-search"></i></button>
                 </div>
+                <a class="nav-link active textp-dark" aria-current="page" href="~/Home/Carrito"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
     </nav>
 
-    <div class="container body-content">
+    <div class="container body-content margin">
         @RenderBody()
         <hr />
         <footer>
