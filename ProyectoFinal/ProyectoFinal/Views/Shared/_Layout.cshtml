@@ -9,40 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        /* Modify the background light */
-        .bgp-light {
-            background-color: #ede5db;
-        }
-        /* Modify the background medium */
-        .bgp-medium {
-            background-color: #d1b5a3;
-        }
-        /* Modify the background black */
-        .bgp-dark {
-            background-color: #6d5b4b
-        }
-        /* Modify the text color */
-        .colorp-dark {
-            color: #6d5b4b;
-        }
-
-        .colorp-medium {
-            color: #d1b5a3;
-        }
-
-        .colorp-light {
-            color: #ede5db;
-        }
-
-        .margin {
-            margin-top: 40px;
-        }
-
-        body {
-            font-family: 'Oswald', sans-serif;
-        }
-    </style>
+    <link href="~/Content/estilos-personalizados.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/6599bab734.js" crossorigin="anonymous"></script>
 </head>
 
@@ -94,13 +61,15 @@ Fuentes: League Spartan, League Gothic-->
     <div class="container body-content margin">
         @RenderBody()
         <hr />
-        <nav class="navbar fixed-bottom bgp-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand colorp-light" href="#">INFO DEL FOOTER</a>
-            </div>
-        </nav>
+        @*<nav class="navbar fixed-bottom bgp-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand colorp-light" href="#">INFO DEL FOOTER</a>
+                </div>
+            </nav>*@
     </div>
-
+    <div class="card-footer bgp-dark colorp-light">
+        INFO DEL FOOTER
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
