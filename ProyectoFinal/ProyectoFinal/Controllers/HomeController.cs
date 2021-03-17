@@ -40,5 +40,9 @@ namespace ProyectoFinal.Controllers
             return View();
         }
 
+        public ActionResult Direccion()
+        {
+            return View();
+        }
     }
 }
