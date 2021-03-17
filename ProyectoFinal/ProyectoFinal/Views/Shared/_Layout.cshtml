@@ -7,6 +7,8 @@
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* Modify the background light */
         .bgp-light {
@@ -24,15 +26,21 @@
         .colorp-dark {
             color: #6d5b4b;
         }
+
         .colorp-medium {
             color: #d1b5a3;
         }
+
         .colorp-light {
             color: #ede5db;
         }
-        
+
         .margin {
             margin-top: 40px;
+        }
+
+        body {
+            font-family: 'Oswald', sans-serif;
         }
     </style>
     <script src="https://kit.fontawesome.com/6599bab734.js" crossorigin="anonymous"></script>
