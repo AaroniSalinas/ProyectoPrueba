@@ -44,5 +44,10 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
+
+        public ActionResult HistorialUsuario()
+        {
+            return View();
+        }
     }
 }
