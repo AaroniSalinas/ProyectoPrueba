@@ -1,140 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "Formulario";
+    ViewBag.Title = "Login";
 }
 
-<div class="container">
-    <h4 class="bg-primary text-center text-white">Example for the class No. 4 - Web Applications development</h4>
-    <hr>
-    <h1>Sign Up</h1>
-    <hr>
+  
     <form method="post" name="signup" id="signup" enctype="multipart/form-data">
-        <!--<div class="form-group">-->
-        <label>Email ID <span class="text-danger">*</span></label>
-        <div class="input-group">
-            <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
-            <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your Email ID" value="">
-        </div>
-        <small> Your Email Id is being used for ensuring the security of your account, authorization and access recovery. </small>
-        <!--</div>-->
-        <div class="form-group">
-            <label>Set Password <span class="text-danger">*</span></label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Choose password (5-15 chars)" value="">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="First name">
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3">Confirm Password <span class="text-danger">*</span></label>
-            <div class="input-group col-sm-8">
-                <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm your password" value="">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Last name">
             </div>
-        </div>
-        <div class="form-group">
-            <label>Full Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" name="mem_name" id="mem_name" placeholder="Enter your Name here" value="">
-        </div>
-        <div class="form-group">
-            <label>Date of Birth <span class="text-danger">*</span></label>
-            <div class="form-inline">
-                <select name="dd" class="form-control">
-                    <option value="">Date</option>
-                    <option value="1">1 </option>
-                    <option value="2">2 </option>
-                    <option value="3">3 </option>
-                    <option value="4">4 </option>
-                    <option value="5">5 </option>
-                    <option value="6">6 </option>
-                    <option value="7">7 </option>
-                    <option value="8">8 </option>
-                    <option value="9">9 </option>
-                </select>
-                <select name="mm" class="form-control">
-                    <option value="">Month</option>
-                    <option value="1">Jan</option>
-                    <option value="2">Feb</option>
-                    <option value="3">Mar</option>
-                    <option value="4">Apr</option>
-                    <option value="5">May</option>
-                    <option value="6">Jun</option>
-                    <option value="7">Jul</option>
-                    <option value="8">Aug</option>
-                    <option value="9">Sep</option>
-                    <option value="10">Oct</option>
-                    <option value="11">Nov</option>
-                    <option value="12">Dec</option>
-                </select>
-                <select name="yyyy" class="form-control">
-                    <option value="0">Year</option>
-                    <option value="1955">1955 </option>
-                    <option value="1956">1956 </option>
-                    <option value="1957">1957 </option>
-                    <option value="1958">1958 </option>
-                    <option value="1959">1959 </option>
-                    <option value="1960">1960 </option>
-                    <option value="1961">1961 </option>
-                    <option value="1962">1962 </option>
-                    <option value="1963">1963 </option>
-                    <option value="1964">1964 </option>
-                    <option value="1965">1965 </option>
-                    <option value="1966">1966 </option>
-                    <option value="1967">1967 </option>
-                    <option value="1968">1968 </option>
-                    <option value="1969">1969 </option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Gender <span class="text-danger">*</span></label>
-            <div>
-                <label>
-                    <input name="gender" type="radio" value="Male" checked>
-                    Male
-                </label>
-                <label>
-                    <input name="gender" type="radio" value="Female">
-                    Female
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Contact No. <span class="text-danger">*</span></label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                <input type="text" class="form-control" name="contactnum" id="contactnum" placeholder="Enter your Primary contact no." value="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>
-                Alternate No. <br>
-                <small>(if any)</small>
-            </label>
-            <div>
-                <input type="text" class="form-control" name="contactnum2" id="contactnum2" placeholder="Any other or Landline no (if any)" value="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>
-                Profile Photo <br>
-                <small>(optional)</small>
-            </label>
-            <div class="input-group">
-                <span class="input-group-text" id="file_upload"><i class="fa fa-upload"></i></span>
-                <input type="file" name="file_nm" id="file_nm" class="form-control" placeholder="" aria-describedby="file_upload">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Security Code </label>
-            <div>
-                <input type="text" name="captcha" id="captcha" class="form-control bg-warning" />
-            </div>
-        </div>
-        <div class="form-group">
-            <span class="text-muted"><span class="alert-danger">Note:-</span> By clicking Sign Up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Policy</a>, including our <a href="#">Cookie Use</a>.</span>
-        </div>
-        <div class="form-group">
-            <input name="Submit" type="submit" value="Sign Up" class="btn btn-primary">
         </div>
     </form>
-</div>
+
