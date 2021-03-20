@@ -27,7 +27,7 @@ namespace ProyectoFinal.Controllers
             return View();
         }
 
-        public ActionResult Formulario()
+        public ActionResult InicioSesion()
         {
             return View();
         }
