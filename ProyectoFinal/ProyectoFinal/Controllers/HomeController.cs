@@ -35,6 +35,19 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
+        public ActionResult Carrito()
+        {
+            return View();
+        }
 
+        public ActionResult Direccion()
+        {
+            return View();
+        }
+
+        public ActionResult HistorialUsuario()
+        {
+            return View();
+        }
     }
 }

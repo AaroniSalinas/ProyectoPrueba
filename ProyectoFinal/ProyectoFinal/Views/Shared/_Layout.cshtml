@@ -7,20 +7,10 @@
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <style>
-        /* Modify the background light */
-        .bgp-light {
-            background-color: #ede5db;
-        }
-        /* Modify the background color */
-        .bgp-medium {
-            background-color: #d1b5a3;
-        }
-        /* Modify the text color */
-        .textp-dark {
-            color: #6d5b4b;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap" rel="stylesheet">
+    <link href="~/Content/estilos-personalizados.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/6599bab734.js" crossorigin="anonymous"></script>
 </head>
 
 <!--Colores: Header: #ede5db  Footer:#6d5b4b   Intermedio: #d1b5a3
@@ -30,10 +20,9 @@ Fuentes: League Spartan, League Gothic-->
     <!--Barra de Navegación-->
     <nav class="navbar navbar-expand-lg fixed-top bgp-light">
 
-        <div class="container-fluid">
-            <!--<a class="navbar-brand navbar-text">LOGO </a>-->
-            <a class="navbar-brand" href="#">
-                <img src="/Imagenes/NARAM.svg" alt="" width="150"/>
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="~/Home/Index">
+                <img src="/Imagenes/Logo Tarjeta.svg" alt="" height="70"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,35 +30,45 @@ Fuentes: League Spartan, League Gothic-->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active textp-dark" aria-current="page" href="~/Home/Index">Home</a>
+                        <a class="nav-link active colorp-dark" aria-current="page" href="#">MAQUILLAJE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link textp-dark" href="~/Home/About">About</a>
+                        <a class="nav-link colorp-dark" href="#">CUIDADO DE LA PIEL</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link textp-dark" href="~/Home/Contact">Contact</a>
+                        <a class="nav-link colorp-dark" href="#">BLOG</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link textp-dark" href="~/Home/Formulario">Formulario</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active textp-dark" aria-current="page" href="~/Home/Registro">Registro</a>
-                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link active colorp-dark" aria-current="page" href="~/Home/Carrito"><i class="fas fa-shopping-cart"></i></a>
+                        </li>*@
                 </ul>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control bgp-medium" placeholder="Buscar" aria-label="Buscar" aria-describedby="Buscar">
-                    <button class="btn bgp-medium" type="button" id="button-buscar"><i class="bi bi-search"></i></button>
-                </div>
+                <form class="d-flex">
+                    <input class="form-control me-4 bgp-medium" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn bgp-medium" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <a class="nav-link colorp-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end bgp-dark" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item colorp-light " href="#">Iniciar Sesión</a></li>
+                    <li><a class="dropdown-item colorp-light " href="~/Home/Registro">Registrarse</a></li>
+                </ul>
+                <a class="nav-link active colorp-dark" aria-current="page" href="~/Home/Carrito"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
     </nav>
 
-    <div class="container body-content">
+    <div class="container body-content margin">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
+        @*<nav class="navbar fixed-bottom bgp-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand colorp-light" href="#">INFO DEL FOOTER</a>
+                </div>
+            </nav>*@
+    </div>
+    <div class="card-footer bgp-dark colorp-light">
+        INFO DEL FOOTER
     </div>
 
     @Scripts.Render("~/bundles/jquery")

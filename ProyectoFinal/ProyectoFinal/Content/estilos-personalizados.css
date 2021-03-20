@@ -1,0 +1,34 @@
+﻿/* Modify the background light */
+.bgp-light {
+    background-color: #ede5db;
+}
+/* Modify the background medium */
+.bgp-medium {
+    background-color: #d1b5a3;
+}
+/* Modify the background black */
+.bgp-dark {
+    background-color: #6d5b4b
+}
+/* Modify the text color */
+.colorp-dark {
+    color: #6d5b4b;
+}
+
+.colorp-medium {
+    color: #d1b5a3;
+}
+
+.colorp-light {
+    color: #ede5db;
+}
+
+.margin {
+    margin-top: 75px;
+}
+
+
+body {
+    font-family: 'Oswald', sans-serif;
+    
+}
