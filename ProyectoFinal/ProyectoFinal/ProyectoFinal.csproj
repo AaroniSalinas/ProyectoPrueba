@@ -299,6 +299,7 @@
     <Content Include="Views\Home\HistorialUsuario.cshtml" />
     <Content Include="Views\Home\InicioSesion.cshtml" />
     <Content Include="Views\Home\PerfilCliente.cshtml" />
+    <Content Include="Views\Home\Recomendaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

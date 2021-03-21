@@ -49,5 +49,11 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
+
+
+        public ActionResult Recomendaciones()
+        {
+            return View();
+        }
     }
 }
