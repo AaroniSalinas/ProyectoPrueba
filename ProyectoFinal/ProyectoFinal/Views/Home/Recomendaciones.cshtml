@@ -3,5 +3,85 @@
     ViewBag.Title = "Recomendaciones";
 }
 
-<h2>Recomendaciones</h2>
 
+
+<link href="~/Content/bootstrap-float-label.css" rel="stylesheet" />
+<style>
+    .registro input, select, textarea {
+        max-width: 80%;
+    }
+
+    .registro .form-control {
+        border-color: #AB8B76 !important;
+        color: #AB8B76 !important;
+        border-bottom-width: thick;
+        margin: 10px;
+    }
+    #thumbs {
+        padding-top: 10px;
+        overflow: hidden;
+    }
+
+        #thumbs img, #largeImage {
+            border: 1px solid gray;
+            padding: 4px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        #thumbs img {
+            float: left;
+            margin-right: 6px;
+        }
+
+    #description {
+        background: black;
+        color: white;
+        position: absolute;
+        bottom: 0;
+        padding: 10px 20px;
+        width: 525px;
+        margin: 5px;
+    }
+
+    #panel {
+        position: relative;
+    }
+    .tumblr{
+        width:100px;
+    }
+</style>
+    <cente>
+        <h2>Recomendaciones</h2>
+    <cente>
+
+        <div class="registro row">
+            <div class="registro col-md-9" style="border-right: 1px solid #AB8B76 ">
+                <div class="registro col-md-4">
+
+                    <div id="gallery">
+                        <div id="panel">
+                            <img style="width:100%" id="largeImage" src="~/Imagenes/ConcealerSingle.jpg" />
+                            <!-- <div id="description">First image description</div>-->
+                        </div>
+                        <div id="thumbs">
+                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="1st image description" />
+                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="2nd image description" />
+                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="3rd image description" />
+                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="4th image description" />
+                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="5th image description" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="registro col-md-8">
+
+
+                </div>
+
+            </div>
+
+            <div class='col-md-3' style='padding-top:10%; '>
+
+            </div>
+        </div>

@@ -144,7 +144,9 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\ConcealerSingle.jpg" />
     <Content Include="Imagenes\Logo Tarjeta.svg" />
+    <Content Include="Imagenes\tumblr.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
