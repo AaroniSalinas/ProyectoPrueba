@@ -3,5 +3,159 @@
     ViewBag.Title = "Carrito";
 }
 
-<h2>Orden XXX - XXX</h2>
-Añade $XXX.XX para tener un envío gratis
+@*<h2>Orden XXX - XXX</h2>
+Añade $XXX.XX para tener un envío gratis*@
+<style>
+    /*.productos {
+        border-right: dashed;
+    }*/
+
+    .producto1 {
+        overflow: hidden;
+        display: flex;
+        border:2px solid silver;
+        margin-bottom:10px;
+    }
+
+        .producto1 img {
+        margin-top: 5px;
+        margin-left: 5px;
+        /*width:150px;
+        height:130px;*/
+        width:300px;
+        height:200px;
+        }
+
+    .producto1-inf{
+        padding:15px;
+    }
+
+    .producto1-elim{
+        position:relative;
+        /*left:350px;
+        bottom: 115px;*/
+        left:230%;
+        bottom: 60%;
+    }
+    .producto1-cant {
+        position: relative;
+        /*left: 240px;
+        bottom: 70px;*/
+        left:150%;
+        bottom: 37%;
+    }
+    .producto1-cant input{
+        width:40px;
+        text-align:center;
+
+    }
+    .total {
+        margin-top:12px;
+        border: 2px solid silver;
+        padding: 15px;
+    }
+    .total p{
+        display:flex;
+        justify-content:space-between;
+        font-size:15px;
+    }
+    .total a{
+        display:block;
+        text-align:center;
+        background-color: black;
+        color:white;
+    }
+</style>
+
+<div class="container">
+    @*<h1>Orden XXX - XXX</h1>
+    Añade $XXX.XX para tener un envío gratis*@
+    <div class="row">
+        <div class="col-lg-8 productos">
+            <h1>Orden XXX - XXX</h1>
+            <h6 style="text-decoration:underline;">Añade $XXX.XX para tener un envío gratis</h6>
+            <div class="producto1">
+                <img src="~/Imagenes/" />
+                <div class="producto1-inf">
+                    <h4 class="producto1-nombre">
+                        PRODUCTO XXXX
+                    </h4>
+                    <h4 class="producto1-tamaño">
+                        TALLA XX
+                    </h4>
+                    <h4 class="producto1-precio">
+                        $ XXXX.XX
+                    </h4>
+                    <p class="producto1-cant">
+                        CANT.
+                        <input value="1" />
+                    </p>
+                    <p class="producto1-elim">
+                        <i class="fas fa-times"></i>
+                    </p>
+                </div>
+            </div>
+
+            <div class="producto1">
+                <img src="~/Imagenes/" />
+                <div class="producto1-inf">
+                    <h4 class="producto1-nombre">
+                        PRODUCTO XXXX
+                    </h4>
+                    <h4 class="producto1-tamaño">
+                        TALLA XX
+                    </h4>
+                    <h4 class="producto1-precio">
+                        $ XXXX.XX
+                    </h4>
+                    <p class="producto1-cant">
+                        CANT.
+                        <input value="1" />
+                    </p>
+                    <p class="producto1-elim">
+                        <i class="fas fa-times"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h2 style="text-align:center; margin-top:30px;">PROCEDER AL PAGO</h2>
+            <br />
+            <div class="total">
+                <p>
+                    <span>Productos</span>
+                    <span>XXX</span>
+                </p>
+
+                <p>
+                    <span>Subtotal</span>
+                    <span>XXX</span>
+                </p>
+
+                <p>
+                    <span>Envío</span>
+                    <span>XXX</span>
+                </p>
+
+                <p>
+                    <span>Código de descuento</span>
+                    <span>XXX</span>
+                </p>
+
+                <p>
+                    <span>Total</span>
+                    <span>XXX</span>
+                </p>
+
+                <a href="#">Pagar</a>
+            </div>
+        </div>
+        @*<div class="col-xl-8 col-lg-6 col-md-4">.col-xl-8 .col-lg-6 .col-md-4</div>
+        <div class="col-lg-6 col-md-4">.col-lg-6 .col-md-4</div>*@
+        @*<div class="col-6 col-md-4">.col-6 .col-md-4</div>
+            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+            <div class="col-6 col-md-4">.col-6 .col-md-4</div>*@
+    </div>
+
+</div>
