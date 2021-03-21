@@ -57,7 +57,7 @@
 
         <div class="registro row">
             <div class="registro col-md-9" style="border-right: 1px solid #AB8B76 ">
-                <div class="registro col-md-4">
+                <div class="registro col-md-5">
 
                     <div id="gallery">
                         <div id="panel">
@@ -66,15 +66,16 @@
                         </div>
                         <div id="thumbs">
                             <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="1st image description" />
-                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="2nd image description" />
-                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="3rd image description" />
-                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="4th image description" />
-                            <img class="tumblr"  src="~/Imagenes/ConcealerSingle.jpg" alt="5th image description" />
+                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="2nd image description" />
+                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="3rd image description" />
+                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="4th image description" />
+                            <img class="tumblr" src="~/Imagenes/tumblr.png" alt="5th image description" />
+                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="6th image description" />
                         </div>
                     </div>
 
                 </div>
-                <div class="registro col-md-8">
+                <div class="registro col-md-7">
 
 
                 </div>
@@ -85,3 +86,14 @@
 
             </div>
         </div>
+       
+        <script >
+            $(document).ready(function () {
+                console.log("ready!");
+                $('#thumbs img').click(function () {
+                    $('#largeImage').attr('src', $(this).attr('src').replace('thumb', 'large'));
+                    $('#description').html($(this).attr('alt'));
+                });
+            });
+            
+        </script>
