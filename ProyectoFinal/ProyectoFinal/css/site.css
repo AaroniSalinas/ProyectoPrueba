@@ -1,0 +1,104 @@
+﻿
+.login-form {
+    color: #6d5b4b;
+    margin-top: 120px !important;
+    margin-bottom: 120px !important;
+    max-width: 75% !important;
+}
+.left {
+    border-right: thin solid #ab8b76;
+}
+
+.legend {
+    font-size: 45px;
+    line-height: 40px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-family: 'League Spartan Bold', arial;
+}
+
+label span{
+    font-family: 'Arapey';
+}
+
+.input-box {
+    max-width: 90%;
+    border-radius: 0 !important;
+    border-color: #ab8b76 !important;
+    border-bottom-width: 3px !important;
+}
+.email-box {
+    margin-bottom: 20px;
+}
+
+.password-box {
+    margin-bottom: 5px;
+}
+
+.forgotten-password {
+    font-family: 'Arapey';
+    margin-bottom: 40px;
+}
+    .forgotten-password a {
+        color: #717273;
+    }
+
+.login-button button {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: 'League Gothic', arial;
+    color: #ede5db;
+    background-color: #6d5b4b;
+    box-shadow: 7px 7px #d1b5a3;
+    width: 50%;
+    border-color: #6d5b4b;
+}
+    .login-button button i{
+        margin-left: 10px;
+    }
+
+.login-fb button {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: 'League Gothic', arial;
+    color: #6d5b4b;
+    background-color: #ede5db;
+    width: 70%;
+    border-width: thin;
+    border-color: #6d5b4b;
+    margin-bottom: 15px;
+}
+
+    .login-fb button span {
+        margin-left: 10px;
+        float: left;
+    }
+
+    .login-fb button i {
+        margin-top: 7px;
+        margin-right: 10px;
+        float: right;
+    }
+
+.login-google button {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-family: 'League Gothic', arial;
+    color: #6d5b4b;
+    background-color: #ede5db;
+    width: 70%;
+    border-width: thin;
+    border-color: #6d5b4b;
+}
+
+    .login-google button span {
+        margin-left: 10px;
+        float: left;
+    }
+
+    .login-google button i {
+        margin-top: 7px;
+        margin-right: 10px;
+        float: right;
+    }   
