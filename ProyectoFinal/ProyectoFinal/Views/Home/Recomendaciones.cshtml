@@ -17,6 +17,7 @@
         border-bottom-width: thick;
         margin: 10px;
     }
+
     #thumbs {
         padding-top: 10px;
         overflow: hidden;
@@ -47,47 +48,92 @@
     #panel {
         position: relative;
     }
-    .tumblr{
-        width:100px;
+
+    .tumblr {
+        width: 100px;
     }
 </style>
-    <cente>
-        <h2>Recomendaciones</h2>
+<cente>
+    <h2>Recomendaciones</h2>
     <cente>
 
         <div class="registro row">
             <div class="registro col-md-9" style="border-right: 1px solid #AB8B76 ">
-                <div class="registro col-md-5">
+                <div class="registro row">
+                    <div class="registro col-sm-5">
 
-                    <div id="gallery">
-                        <div id="panel">
-                            <img style="width:100%" id="largeImage" src="~/Imagenes/ConcealerSingle.jpg" />
-                            <!-- <div id="description">First image description</div>-->
+                        <div id="gallery">
+                            <div id="panel">
+                                <img style="width:100%" id="largeImage" src="~/Imagenes/ConcealerSingle.jpg" />
+                                <!-- <div id="description">First image description</div>-->
+                            </div>
+                            <div id="thumbs">
+                                <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="1st image description" />
+                                <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="2nd image description" />
+                                <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="3rd image description" />
+                                <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="4th image description" />
+                                <img class="tumblr" src="~/Imagenes/tumblr.png" alt="5th image description" />
+                                <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="6th image description" />
+                            </div>
                         </div>
-                        <div id="thumbs">
-                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="1st image description" />
-                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="2nd image description" />
-                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="3rd image description" />
-                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="4th image description" />
-                            <img class="tumblr" src="~/Imagenes/tumblr.png" alt="5th image description" />
-                            <img class="tumblr" src="~/Imagenes/ConcealerSingle.jpg" alt="6th image description" />
-                        </div>
+
                     </div>
 
+                    <div class="registro col-sm-7">
+                        <h2>Opiniones</h2>
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img style="border-radius: 50%; width: 150px; " src="~/Imagenes/tumblr.png" class="card-img" alt="Aroni">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img style="border-radius: 50%; width: 150px; " src="~/Imagenes/tumblr.png" class="card-img" alt="Aroni">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                           <form>
+                                               <textarea></textarea>
+                                              <button>Send</button>
+                                           </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
-                <div class="registro col-md-7">
-
-
-                </div>
-
             </div>
 
             <div class='col-md-3' style='padding-top:10%; '>
+                <div class="badge bg-dark text-wrap" style="width: 20rem;">
+                   <p class="fs-3"> Descripcion</p>
+                   </div>
 
+                <h3>Producto xxx</h3>
+                <p class="fst-normal">XXXXXXXXXXXXXXX</p>
+                <p class="fw-light">XXXXXXXXXXXX.</p>
             </div>
         </div>
-       
-        <script >
+
+        <script>
             $(document).ready(function () {
                 console.log("ready!");
                 $('#thumbs img').click(function () {
@@ -95,5 +141,5 @@
                     $('#description').html($(this).attr('alt'));
                 });
             });
-            
+
         </script>
