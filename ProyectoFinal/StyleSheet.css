@@ -1,0 +1,11 @@
+﻿.h3 {
+    font-size: 42px;
+    line-height: 38px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.left col {
+    border-right: thin solid #b8bdc5;
+}
