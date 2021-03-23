@@ -49,5 +49,15 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
+
+        public ActionResult Inicio()
+        {
+            return View();
+        }
+
+        public ActionResult vistaProducto()
+        {
+            return View();
+        }
     }
 }
