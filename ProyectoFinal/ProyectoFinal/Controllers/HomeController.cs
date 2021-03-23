@@ -27,7 +27,7 @@ namespace ProyectoFinal.Controllers
             return View();
         }
 
-        public ActionResult Formulario()
+        public ActionResult InicioSesion()
         {
             return View();
         }
@@ -46,6 +46,12 @@ namespace ProyectoFinal.Controllers
         }
 
         public ActionResult HistorialUsuario()
+        {
+            return View();
+        }
+
+
+        public ActionResult Recomendaciones()
         {
             return View();
         }
