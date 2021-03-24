@@ -31,6 +31,12 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
+
+        public ActionResult PerfilCliente()
+        {
+            return View();
+        }
+
         public ActionResult Registro()
         {
             return View();
