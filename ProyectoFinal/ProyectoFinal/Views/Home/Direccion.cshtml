@@ -8,43 +8,61 @@
     colorp-dark
     colorp-medium
     colorp-light*/-->
+<link href="~/Content/bootstrap-float-label.css" rel="stylesheet" />
+<style>
+    .direccion input, select, textarea {
+        max-width: 80%;
+    }
 
+    .direccion .form-control {
+        border-color: #AB8B76 !important;
+        color: #AB8B76 !important;
+        border-bottom-width: thick;
+        margin: 10px;
+    }
+</style>
 <h2 class="colorp-dark">AÑADIR DIRECCIÓN</h2>
 
-<form class="row">
-    <div class="col-md-6">
-        <label for="inputNombre" class="form-label colorp-dark">Nombre(s)</label>
-        <input type="text" class="form-control colorp-medium" id="inputNombre">
+<div class="direccion row">
+    <div class="registro col-md-12" >
+        <form>
+            <span class="direccion has-float-label">
+                <input type="text" class="direccion form-control" id="inputNombre">
+                <label for="inputNombre">Nombre(s)</label>
+            </span>
+            <span class="direccion has-float-label">
+                <input type="text" class="direccion form-control" id="inputApellidos">
+                <label for="inputApellidos">Apellidos</label>
+            </span>
+            <span class="direccion has-float-label">
+                <input type="text" class="direccion form-control" id="inputAddress">
+                <label for="inputAddress">Dirección</label>
+            </span>
+            <span class="direccion has-float-label">
+                <input type="text" class="direccion form-control" id="inputAddress2 ">
+                <label for="inputAddress2">Puntos de referencia</label>
+            </span>
+            <span class="direccion has-float-label">
+                <input type="text" class="form-control" id="inputCP">
+                <label for="inputCP">CP</label>
+            </span>
+            <span class="direccion has-float-label">
+                <input type="text" class="direccion form-control" id="inputCol">
+                <label for="inputCol">Colonia</label>
+            </span>
+            <span class="direccion  has-float-label">
+                <input type="text" class="direccion form-control colorp-medium" id="inputCiudad">
+                <label for="inputCiudad">Ciudad</label>
+            </span>
+            <span class="direccion has-float-label">
+                <input type="text" class="direccion form-control" id="inputEstado">
+                <label for="inputEstado">Estado</label>
+            </span>
+            <cente>
+                <button type="button" onclick="location.href='/Home/PerfilCliente'" class="registro btn btn-lg col-md-6" style=' color: white; background-color: #AB8B76 !important; border: 1px solid #AB8B76 !important; box-shadow:  5px 10px #D1B5A3'>
+                    Añadir dirección
+                </button>
+            </cente>
+        </form>
     </div>
-    <div class="col-md-6">
-        <label for="inputApellidos" class="form-label colorp-dark">Apellidos</label>
-        <input type="text" class="form-control" id="inputApellidos">
-    </div>
-    <div class="col-md-12">
-        <label for="inputAddress" class="form-label colorp-dark">Dirección</label>
-        <input type="text" class="form-control colorp-medium" id="inputAddress" placeholder="Calle y Número">
-    </div>
-    <div class="col-md-12">
-        <label for="inputAddress2" class="form-label colorp-dark">Puntos de referencia</label>
-        <input type="text" class="form-control colorp-medium" id="inputAddress2 " placeholder="Entre calle y calle">
-    </div>
-    <div class="col-md-6">
-        <label for="inputCP" class="form-label colorp-dark">CP</label>
-        <input type="text" class="form-control colorp-medium" id="inputCP">
-    </div>
-    <div class="col-md-6">
-        <label for="inputCol" class="form-label colorp-dark">Colonia</label>
-        <input type="text" class="form-control colorp-medium" id="inputCol">
-    </div>
-    <div class="col-md-6">
-        <label for="inputCiudad" class="form-label colorp-dark">Ciudad</label>
-        <input type="text" class="form-control colorp-medium" id="inputCiudad">
-    </div>
-    <div class="col-md-6">
-        <label for="inputEstado" class="form-label colorp-dark">Estado</label>
-        <input type="text" class="form-control colorp-medium" id="inputEstado">
-    </div>
-    <div class="col-md-6">
-        <button type="button" class="btn bgp-medium colorp-light" data-bs-toggle="button" autocomplete="off">Añadir dirección</button>
-    </div>
-</form>
+</div>

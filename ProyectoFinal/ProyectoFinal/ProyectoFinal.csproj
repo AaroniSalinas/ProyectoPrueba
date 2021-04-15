@@ -140,11 +140,13 @@
     <Content Include="Content\estilos-personalizados.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="css\perfilCliente.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagenes\ConcealerSingle.jpg" />
+    <Content Include="Imagenes\grey box.jpg" />
     <Content Include="Imagenes\Logo Tarjeta.svg" />
     <Content Include="Imagenes\tumblr.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -189,7 +191,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="css\site.css" />
+    <Content Include="css\inicioSesion.css" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />

@@ -1,0 +1,57 @@
+﻿.container {
+    color: #6d5b4b;
+    margin-top: 120px !important;
+    margin-bottom: 120px !important;
+    font-family: 'Arapey';
+}
+
+.welcome-message,
+.just-seen {
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'League Spartan Bold', arial;
+}
+
+a {
+    color: #6d5b4b !important;
+}
+
+.logout-message a {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.coupons {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: 'League Spartan Bold', arial;
+}
+.coupons-info p{
+    margin-bottom: 0;
+}
+
+.coupons-info a {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.title-nav-account {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+    .title-nav-account a{
+        text-decoration: none;
+    }
+
+ul {
+    list-style: none;
+}
+
+li{
+    margin-bottom: 10px;
+}
