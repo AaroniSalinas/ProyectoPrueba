@@ -40,6 +40,11 @@ namespace ProyectoFinal.Controllers
             return View();
         }
 
+        public ActionResult VerCarrito()
+        {
+            return View();
+        }
+
         public ActionResult Direccion()
         {
             return View();
