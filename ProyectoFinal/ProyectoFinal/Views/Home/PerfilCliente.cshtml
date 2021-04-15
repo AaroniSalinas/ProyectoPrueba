@@ -3,5 +3,178 @@
     ViewBag.Title = "PerfilCliente";
 }
 
-<h2>Perfil de cliente</h2>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="~/css/perfilCliente.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-reboot.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-3.0.0.min.js"></script>
+    <script src="../Scripts/jquery-3.0.0.slim.min.js"></script>
+    <script src="../Scripts/popper-utils.min.js"></script>
+    <script src="../Scripts/popper.min.js"></script>
+
+    <link href="https://allfont.es/allfont.css?fonts=league-spartan" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arapey" />
+    <link href="https://allfont.es/allfont.css?fonts=league-gothic" rel="stylesheet" type="text/css" />
+
+    <title>Perfil de Cliente</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col col-9">
+                <div class="row">
+                    <div class="col">
+                        <div class="welcome-message">
+                            <p>Hola xxxx xxxx</p>
+                        </div>
+                    </div>
+
+                    <div class="col d-flex justify-content-end">
+                        <div class="logout-message">
+                            ¿No eres xxxx xxxx? 
+                            <a href="">Cerrar sesión</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <div class="coupons">
+                            <p>Tus cupones</p>
+                        </div>
+                        
+                        <div class="coupons-info">
+                            <p> Actualmente no hay cupones disponibles.</p>
+                            <a href="">Conoce más</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <div class="just-seen d-flex justify-content-center" style="margin-top: 40px;">
+                            <p>Vistos recientemente</p>
+                        </div>
+                        
+                        <div class="row d-flex justify-content-center">
+                            <div class="col col-md-auto">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="~/Imagenes/grey box.jpg" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-text"><strong>Producto A</strong></h5>
+                                        <h6 class="card-text">$123.45</h6>
+                                        <p class="card-text">Aenean non justo non quam. </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col col-md-auto">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="~/Imagenes/grey box.jpg" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-text"><strong>Producto B</strong></h5>
+                                        <h6 class="card-text">$123.45</h6>
+                                        <p class="card-text">Quisque a dui sed quam. </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col col-md-auto">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="~/Imagenes/grey box.jpg" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-text"><strong>Producto C</strong></h5>
+                                        <h6 class="card-text">$123.45</h6>
+                                        <p class="card-text">Sed ornare elementum odio.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+                <div class="nav-account">
+                    <ul>
+                        <li class="title-nav-account">
+                            <a href="">Mi cuenta</a>
+                        </li>
+
+                        <li>
+                            <a href="/Home/PerfilCliente">Datos personales</a>
+                        </li>
+
+                        <li>
+                            <a href="">Tus preferencias</a>
+                        </li>
+
+                        <li>
+                            <a href="/Home/Direccion">Direcciones</a>
+                        </li>
+
+                        <li>
+                            <a href="/Home/HistorialUsuario">Historial de Pedidos</a>
+                        </li>
+
+                        <li>
+                            <a class="btn disabled" href="#">Lista de Deseos</a>
+                        </li>
+                    </ul>
+
+                    <hr/>
+
+                    <ul>
+                        <li class="title-nav-account">
+                            <a class="btn disabled" href="#">¿Necesitas ayuda?</a>
+                        </li>
+
+                        <li>
+                            <a href="/Home/Inicio">Productos</a>
+                        </li>
+
+                        <li>
+                            <a class="btn disabled" href="#">Pedidos y formas de pago</a>
+                        </li>
+
+                        <li>
+                            <a class="btn disabled" href="#">Entrega</a>
+                        </li>
+
+                        <li>
+                            <a class="btn disabled" href="#">Promociones y códigos de descuento</a>
+                        </li>
+
+                        <li>
+                            <a class="btn disabled" href="#">Devoluciones y reembolsos</a>
+                        </li>
+
+                        <li>
+                            <a class="btn disabled" href="#">Información de la empresa</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
 

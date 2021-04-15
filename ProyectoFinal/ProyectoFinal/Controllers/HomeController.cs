@@ -31,11 +31,22 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
+
+        public ActionResult PerfilCliente()
+        {
+            return View();
+        }
+
         public ActionResult Registro()
         {
             return View();
         }
         public ActionResult Carrito()
+        {
+            return View();
+        }
+
+        public ActionResult VerCarrito()
         {
             return View();
         }
@@ -52,6 +63,16 @@ namespace ProyectoFinal.Controllers
 
 
         public ActionResult Recomendaciones()
+        {
+            return View();
+        }
+
+        public ActionResult Inicio()
+        {
+            return View();
+        }
+
+        public ActionResult vistaProducto()
         {
             return View();
         }
