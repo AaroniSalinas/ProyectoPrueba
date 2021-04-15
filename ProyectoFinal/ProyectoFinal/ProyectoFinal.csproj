@@ -307,6 +307,7 @@
     <Content Include="Views\Home\Recomendaciones.cshtml" />
     <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Views\Home\vistaProducto.cshtml" />
+    <Content Include="Views\Home\VerCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
