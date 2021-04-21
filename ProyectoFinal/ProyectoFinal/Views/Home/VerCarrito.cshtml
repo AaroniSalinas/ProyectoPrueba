@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "VerCarrito";
+}
+<style>
+    .container {
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        text-align:center;
+    }
+
+    .container h1{
+        color:#000000;
+    }
+
+    .button{
+        background: black;
+        color:#ffffff;
+        padding: 10px 15px;
+        text-transform:uppercase;
+    }
+
+    .popup{
+        background: rgba(0,0,0,0.1);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align:center;
+    }
+
+    .popup-info {
+        height: 250px;
+        width: 500px;
+        background: #ffffff;
+        position: relative;
+        border-color: #000000;
+        border: 2px solid;
+        margin: 5px;
+    }
+
+    .producto-popup {
+        /*overflow: hidden;
+        display: flex;*/
+        border: 2px solid silver;
+        margin-bottom: 10px;
+        top: 50%;
+        left: 50%;
+        margin: 5px;
+        /*width: 30%;*/
+        /*float: left;*/
+        /*display: inline-block;*/
+        /*text-align:left;*/
+    }
+</style>
+<div class="container">
+    <h2>Carrito</h2>
+    <hr />
+    <a href="#" class="button">Iniciar sesión</a>
+    @*<a href="#" class="button">Editar carrito</a>*@
+</div>
+<div class="popup">
+    <div class="popup-info">
+        <h2>Carrito</h2>
+        <hr />
+        <button type="button" class="btn-close" style="" aria-label="Close"></button>
+        <div class="producto-popup">
+            <img src="~/Imagenes/" style="align-content:center;" />
+            <div class="producto-popup-inf">
+                PRODUCTO XXX
+                <br />
+                TALLA XXX
+                <br />
+                COLOR XXX
+            </div>
+        </div>
+        <div class="producto-popup">
+            <img src="~/Imagenes/" />
+            <div class="producto-popup-inf">
+                PRODUCTO XXX
+                <br />
+                TALLA XXX
+                <br />
+                COLOR XXX
+            </div>
+        </div>
+        <a href="#" class="button">Iniciar sesión</a>
+    </div>
+</div>
