@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BaseDatosWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="categoriaId" />
+          </Key>
+          <Property Name="categoriaId" Type="int" Nullable="false" />
+          <Property Name="categoriaNombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BaseDatosWeb.dbo.direccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="direccion">
+          <Property Name="usuarioId" Type="int" />
+          <Property Name="direccionNombre" Type="varchar" MaxLength="50" />
+          <Property Name="direccionApellido" Type="varchar" MaxLength="50" />
+          <Property Name="direccionCalleNum" Type="varchar" MaxLength="50" />
+          <Property Name="direccionReferencia" Type="varchar" MaxLength="100" />
+          <Property Name="direccionColonia" Type="varchar" MaxLength="20" />
+          <Property Name="direccionPostal" Type="varchar" MaxLength="10" />
+          <Property Name="direccionCiudad" Type="varchar" MaxLength="40" />
+          <Property Name="direccionEstado" Type="varchar" MaxLength="20" />
+        </EntityType>-->
+        <EntityType Name="orden">
+          <Key>
+            <PropertyRef Name="idOrden" />
+          </Key>
+          <Property Name="idOrden" Type="int" Nullable="false" />
+          <Property Name="usuarioId" Type="int" />
+          <Property Name="productoId" Type="int" />
+          <Property Name="ordenCantidad" Type="int" />
+          <Property Name="ordenTotal" Type="float" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="productoId" />
+          </Key>
+          <Property Name="productoId" Type="int" Nullable="false" />
+          <Property Name="productoNombre" Type="varchar" MaxLength="50" />
+          <Property Name="productoPrecio" Type="float" />
+          <Property Name="productoExistencia" Type="int" />
+          <Property Name="categoriaId" Type="int" />
+          <Property Name="subcategoriaId" Type="int" />
+        </EntityType>
+        <EntityType Name="subcategoria">
+          <Key>
+            <PropertyRef Name="subcategoriaId" />
+          </Key>
+          <Property Name="subcategoriaId" Type="int" Nullable="false" />
+          <Property Name="categoriaId" Type="int" />
+          <Property Name="subcategoriaNombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioId" />
+          </Key>
+          <Property Name="usuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuarioCorreo" Type="varchar" MaxLength="50" />
+          <Property Name="usuarioNombre" Type="varchar" MaxLength="50" />
+          <Property Name="usuarioApellido" Type="varchar" MaxLength="50" />
+          <Property Name="usuarioTelefono" Type="varchar" MaxLength="10" />
+          <Property Name="usuarioContrasenia" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__direccion__usuar__24927208" />-->
+        <Association Name="FK__orden__productoI__30F848ED">
+          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+          <End Role="orden" Type="Self.orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="productoId" />
+            </Principal>
+            <Dependent Role="orden">
+              <PropertyRef Name="productoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orden__usuarioId__300424B4">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="orden" Type="Self.orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="usuarioId" />
+            </Principal>
+            <Dependent Role="orden">
+              <PropertyRef Name="usuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__catego__2C3393D0">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="categoriaId" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="categoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__subcat__2D27B809">
+          <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="0..1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subcategoria">
+              <PropertyRef Name="subcategoriaId" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="subcategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subcatego__categ__29572725">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="categoriaId" />
+            </Principal>
+            <Dependent Role="subcategoria">
+              <PropertyRef Name="categoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseDatosWebModelStoreContainer">
+          <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orden" EntityType="Self.orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__orden__productoI__30F848ED" Association="Self.FK__orden__productoI__30F848ED">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="orden" EntitySet="orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orden__usuarioId__300424B4" Association="Self.FK__orden__usuarioId__300424B4">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="orden" EntitySet="orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__catego__2C3393D0" Association="Self.FK__producto__catego__2C3393D0">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__subcat__2D27B809" Association="Self.FK__producto__subcat__2D27B809">
+            <End Role="subcategoria" EntitySet="subcategoria" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subcatego__categ__29572725" Association="Self.FK__subcatego__categ__29572725">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="subcategoria" EntitySet="subcategoria" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseDatosWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="categoriaId" />
+          </Key>
+          <Property Name="categoriaId" Type="Int32" Nullable="false" />
+          <Property Name="categoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="productoes" Relationship="Self.FK__producto__catego__2C3393D0" FromRole="categoria" ToRole="producto" />
+          <NavigationProperty Name="subcategorias" Relationship="Self.FK__subcatego__categ__29572725" FromRole="categoria" ToRole="subcategoria" />
+        </EntityType>
+        <EntityType Name="orden">
+          <Key>
+            <PropertyRef Name="idOrden" />
+          </Key>
+          <Property Name="idOrden" Type="Int32" Nullable="false" />
+          <Property Name="usuarioId" Type="Int32" />
+          <Property Name="productoId" Type="Int32" />
+          <Property Name="ordenCantidad" Type="Int32" />
+          <Property Name="ordenTotal" Type="Double" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__orden__productoI__30F848ED" FromRole="orden" ToRole="producto" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__orden__usuarioId__300424B4" FromRole="orden" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="productoId" />
+          </Key>
+          <Property Name="productoId" Type="Int32" Nullable="false" />
+          <Property Name="productoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productoPrecio" Type="Double" />
+          <Property Name="productoExistencia" Type="Int32" />
+          <Property Name="categoriaId" Type="Int32" />
+          <Property Name="subcategoriaId" Type="Int32" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK__producto__catego__2C3393D0" FromRole="producto" ToRole="categoria" />
+          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__productoI__30F848ED" FromRole="producto" ToRole="orden" />
+          <NavigationProperty Name="subcategoria" Relationship="Self.FK__producto__subcat__2D27B809" FromRole="producto" ToRole="subcategoria" />
+        </EntityType>
+        <EntityType Name="subcategoria">
+          <Key>
+            <PropertyRef Name="subcategoriaId" />
+          </Key>
+          <Property Name="subcategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="categoriaId" Type="Int32" />
+          <Property Name="subcategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK__subcatego__categ__29572725" FromRole="subcategoria" ToRole="categoria" />
+          <NavigationProperty Name="productoes" Relationship="Self.FK__producto__subcat__2D27B809" FromRole="subcategoria" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioId" />
+          </Key>
+          <Property Name="usuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuarioCorreo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioTelefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioContrasenia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__usuarioId__300424B4" FromRole="usuario" ToRole="orden" />
+        </EntityType>
+        <Association Name="FK__producto__catego__2C3393D0">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="categoriaId" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="categoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subcatego__categ__29572725">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="categoriaId" />
+            </Principal>
+            <Dependent Role="subcategoria">
+              <PropertyRef Name="categoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orden__productoI__30F848ED">
+          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+          <End Role="orden" Type="Self.orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="productoId" />
+            </Principal>
+            <Dependent Role="orden">
+              <PropertyRef Name="productoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orden__usuarioId__300424B4">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="orden" Type="Self.orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="usuarioId" />
+            </Principal>
+            <Dependent Role="orden">
+              <PropertyRef Name="usuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__subcat__2D27B809">
+          <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="0..1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subcategoria">
+              <PropertyRef Name="subcategoriaId" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="subcategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseDatosWebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categorias" EntityType="Self.categoria" />
+          <EntitySet Name="ordens" EntityType="Self.orden" />
+          <EntitySet Name="productoes" EntityType="Self.producto" />
+          <EntitySet Name="subcategorias" EntityType="Self.subcategoria" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
+          <AssociationSet Name="FK__producto__catego__2C3393D0" Association="Self.FK__producto__catego__2C3393D0">
+            <End Role="categoria" EntitySet="categorias" />
+            <End Role="producto" EntitySet="productoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subcatego__categ__29572725" Association="Self.FK__subcatego__categ__29572725">
+            <End Role="categoria" EntitySet="categorias" />
+            <End Role="subcategoria" EntitySet="subcategorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orden__productoI__30F848ED" Association="Self.FK__orden__productoI__30F848ED">
+            <End Role="producto" EntitySet="productoes" />
+            <End Role="orden" EntitySet="ordens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orden__usuarioId__300424B4" Association="Self.FK__orden__usuarioId__300424B4">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="orden" EntitySet="ordens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__subcat__2D27B809" Association="Self.FK__producto__subcat__2D27B809">
+            <End Role="subcategoria" EntitySet="subcategorias" />
+            <End Role="producto" EntitySet="productoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BaseDatosWebModelStoreContainer" CdmEntityContainer="BaseDatosWebEntities">
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="BaseDatosWebModel.categoria">
+              <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
+                <ScalarProperty Name="categoriaNombre" ColumnName="categoriaNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordens">
+            <EntityTypeMapping TypeName="BaseDatosWebModel.orden">
+              <MappingFragment StoreEntitySet="orden">
+                <ScalarProperty Name="idOrden" ColumnName="idOrden" />
+                <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
+                <ScalarProperty Name="productoId" ColumnName="productoId" />
+                <ScalarProperty Name="ordenCantidad" ColumnName="ordenCantidad" />
+                <ScalarProperty Name="ordenTotal" ColumnName="ordenTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productoes">
+            <EntityTypeMapping TypeName="BaseDatosWebModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="productoId" ColumnName="productoId" />
+                <ScalarProperty Name="productoNombre" ColumnName="productoNombre" />
+                <ScalarProperty Name="productoPrecio" ColumnName="productoPrecio" />
+                <ScalarProperty Name="productoExistencia" ColumnName="productoExistencia" />
+                <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
+                <ScalarProperty Name="subcategoriaId" ColumnName="subcategoriaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subcategorias">
+            <EntityTypeMapping TypeName="BaseDatosWebModel.subcategoria">
+              <MappingFragment StoreEntitySet="subcategoria">
+                <ScalarProperty Name="subcategoriaId" ColumnName="subcategoriaId" />
+                <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
+                <ScalarProperty Name="subcategoriaNombre" ColumnName="subcategoriaNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="BaseDatosWebModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
+                <ScalarProperty Name="usuarioCorreo" ColumnName="usuarioCorreo" />
+                <ScalarProperty Name="usuarioNombre" ColumnName="usuarioNombre" />
+                <ScalarProperty Name="usuarioApellido" ColumnName="usuarioApellido" />
+                <ScalarProperty Name="usuarioTelefono" ColumnName="usuarioTelefono" />
+                <ScalarProperty Name="usuarioContrasenia" ColumnName="usuarioContrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

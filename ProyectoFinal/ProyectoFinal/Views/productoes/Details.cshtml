@@ -1,0 +1,59 @@
+﻿@model ProyectoFinal.producto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productoNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productoNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productoPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productoPrecio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productoExistencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productoExistencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categoria.categoriaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoria.categoriaNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subcategoria.subcategoriaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subcategoria.subcategoriaNombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.productoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
