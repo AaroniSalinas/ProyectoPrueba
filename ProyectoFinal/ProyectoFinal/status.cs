@@ -12,24 +12,18 @@ namespace ProyectoFinal
     using System;
     using System.Collections.Generic;
     
-    public partial class producto
+    public partial class status
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public producto()
+        public status()
         {
-            this.pedidos = new HashSet<pedido>();
+            this.ordens = new HashSet<orden>();
         }
     
-        public int productoId { get; set; }
-        public string productoNombre { get; set; }
-        public Nullable<double> productoPrecio { get; set; }
-        public Nullable<int> productoExistencia { get; set; }
-        public Nullable<int> categoriaId { get; set; }
-        public Nullable<int> subcategoriaId { get; set; }
+        public int statusId { get; set; }
+        public string statusNombre { get; set; }
     
-        public virtual categoria categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pedido> pedidos { get; set; }
-        public virtual subcategoria subcategoria { get; set; }
+        public virtual ICollection<orden> ordens { get; set; }
     }
 }

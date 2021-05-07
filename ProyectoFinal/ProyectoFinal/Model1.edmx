@@ -12,28 +12,25 @@
           <Property Name="categoriaId" Type="int" Nullable="false" />
           <Property Name="categoriaNombre" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'BaseDatosWeb.dbo.direccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="direccion">
-          <Property Name="usuarioId" Type="int" />
-          <Property Name="direccionNombre" Type="varchar" MaxLength="50" />
-          <Property Name="direccionApellido" Type="varchar" MaxLength="50" />
-          <Property Name="direccionCalleNum" Type="varchar" MaxLength="50" />
-          <Property Name="direccionReferencia" Type="varchar" MaxLength="100" />
-          <Property Name="direccionColonia" Type="varchar" MaxLength="20" />
-          <Property Name="direccionPostal" Type="varchar" MaxLength="10" />
-          <Property Name="direccionCiudad" Type="varchar" MaxLength="40" />
-          <Property Name="direccionEstado" Type="varchar" MaxLength="20" />
-        </EntityType>-->
         <EntityType Name="orden">
           <Key>
-            <PropertyRef Name="idOrden" />
+            <PropertyRef Name="ordenId" />
           </Key>
-          <Property Name="idOrden" Type="int" Nullable="false" />
+          <Property Name="ordenId" Type="int" Nullable="false" />
           <Property Name="usuarioId" Type="int" />
-          <Property Name="productoId" Type="int" />
-          <Property Name="ordenCantidad" Type="int" />
           <Property Name="ordenTotal" Type="float" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="statusId" Type="int" />
+        </EntityType>
+        <EntityType Name="pedidos">
+          <Key>
+            <PropertyRef Name="pedidoId" />
+          </Key>
+          <Property Name="pedidoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ordenId" Type="int" />
+          <Property Name="productoId" Type="int" />
+          <Property Name="pedidoCantidad" Type="int" />
+          <Property Name="pedidoSubtotal" Type="float" />
         </EntityType>
         <EntityType Name="producto">
           <Key>
@@ -45,6 +42,13 @@ warning 6013: The table/view 'BaseDatosWeb.dbo.direccion' does not have a primar
           <Property Name="productoExistencia" Type="int" />
           <Property Name="categoriaId" Type="int" />
           <Property Name="subcategoriaId" Type="int" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="statusId" />
+          </Key>
+          <Property Name="statusId" Type="int" Nullable="false" />
+          <Property Name="statusNombre" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="subcategoria">
           <Key>
@@ -65,22 +69,19 @@ warning 6013: The table/view 'BaseDatosWeb.dbo.direccion' does not have a primar
           <Property Name="usuarioTelefono" Type="varchar" MaxLength="10" />
           <Property Name="usuarioContrasenia" Type="varchar" MaxLength="30" />
         </EntityType>
-        <!--Errors Found During Generation:
-error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__direccion__usuar__24927208" />-->
-        <Association Name="FK__orden__productoI__30F848ED">
-          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+        <Association Name="FK__orden__statusId__6477ECF3">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="producto">
-              <PropertyRef Name="productoId" />
+            <Principal Role="status">
+              <PropertyRef Name="statusId" />
             </Principal>
             <Dependent Role="orden">
-              <PropertyRef Name="productoId" />
+              <PropertyRef Name="statusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orden__usuarioId__300424B4">
+        <Association Name="FK__orden__usuarioId__6383C8BA">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,6 +90,30 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
             </Principal>
             <Dependent Role="orden">
               <PropertyRef Name="usuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedidos__ordenId__693CA210">
+          <End Role="orden" Type="Self.orden" Multiplicity="0..1" />
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orden">
+              <PropertyRef Name="ordenId" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="ordenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedidos__product__68487DD7">
+          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="productoId" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="productoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -128,19 +153,51 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="addProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="precio" Type="float" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="categoria" Type="varchar" Mode="In" />
+          <Parameter Name="idSubcategoria" Type="int" Mode="In" />
+          <Parameter Name="subcategoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="agregarProductoOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productoId" Type="int" Mode="In" />
+          <Parameter Name="ordenId" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="usuarioId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="createSignUp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correo" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="int" Mode="In" />
+          <Parameter Name="contraseña" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="BaseDatosWebModelStoreContainer">
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orden" EntityType="Self.orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pedidos" EntityType="Self.pedidos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status" EntityType="Self.status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__orden__productoI__30F848ED" Association="Self.FK__orden__productoI__30F848ED">
-            <End Role="producto" EntitySet="producto" />
+          <AssociationSet Name="FK__orden__statusId__6477ECF3" Association="Self.FK__orden__statusId__6477ECF3">
+            <End Role="status" EntitySet="status" />
             <End Role="orden" EntitySet="orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__orden__usuarioId__300424B4" Association="Self.FK__orden__usuarioId__300424B4">
+          <AssociationSet Name="FK__orden__usuarioId__6383C8BA" Association="Self.FK__orden__usuarioId__6383C8BA">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="orden" EntitySet="orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedidos__ordenId__693CA210" Association="Self.FK__pedidos__ordenId__693CA210">
+            <End Role="orden" EntitySet="orden" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedidos__product__68487DD7" Association="Self.FK__pedidos__product__68487DD7">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="pedidos" EntitySet="pedidos" />
           </AssociationSet>
           <AssociationSet Name="FK__producto__catego__2C3393D0" Association="Self.FK__producto__catego__2C3393D0">
             <End Role="categoria" EntitySet="categoria" />
@@ -171,15 +228,28 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
         </EntityType>
         <EntityType Name="orden">
           <Key>
-            <PropertyRef Name="idOrden" />
+            <PropertyRef Name="ordenId" />
           </Key>
-          <Property Name="idOrden" Type="Int32" Nullable="false" />
+          <Property Name="ordenId" Type="Int32" Nullable="false" />
           <Property Name="usuarioId" Type="Int32" />
-          <Property Name="productoId" Type="Int32" />
-          <Property Name="ordenCantidad" Type="Int32" />
           <Property Name="ordenTotal" Type="Double" />
-          <NavigationProperty Name="producto" Relationship="Self.FK__orden__productoI__30F848ED" FromRole="orden" ToRole="producto" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK__orden__usuarioId__300424B4" FromRole="orden" ToRole="usuario" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="statusId" Type="Int32" />
+          <NavigationProperty Name="status" Relationship="Self.FK__orden__statusId__6477ECF3" FromRole="orden" ToRole="status" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__orden__usuarioId__6383C8BA" FromRole="orden" ToRole="usuario" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedidos__ordenId__693CA210" FromRole="orden" ToRole="pedidos" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="pedidoId" />
+          </Key>
+          <Property Name="pedidoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ordenId" Type="Int32" />
+          <Property Name="productoId" Type="Int32" />
+          <Property Name="pedidoCantidad" Type="Int32" />
+          <Property Name="pedidoSubtotal" Type="Double" />
+          <NavigationProperty Name="orden" Relationship="Self.FK__pedidos__ordenId__693CA210" FromRole="pedidos" ToRole="orden" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__pedidos__product__68487DD7" FromRole="pedidos" ToRole="producto" />
         </EntityType>
         <EntityType Name="producto">
           <Key>
@@ -192,8 +262,16 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
           <Property Name="categoriaId" Type="Int32" />
           <Property Name="subcategoriaId" Type="Int32" />
           <NavigationProperty Name="categoria" Relationship="Self.FK__producto__catego__2C3393D0" FromRole="producto" ToRole="categoria" />
-          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__productoI__30F848ED" FromRole="producto" ToRole="orden" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedidos__product__68487DD7" FromRole="producto" ToRole="pedidos" />
           <NavigationProperty Name="subcategoria" Relationship="Self.FK__producto__subcat__2D27B809" FromRole="producto" ToRole="subcategoria" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="statusId" />
+          </Key>
+          <Property Name="statusId" Type="Int32" Nullable="false" />
+          <Property Name="statusNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__statusId__6477ECF3" FromRole="status" ToRole="orden" />
         </EntityType>
         <EntityType Name="subcategoria">
           <Key>
@@ -215,7 +293,7 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
           <Property Name="usuarioApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="usuarioTelefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="usuarioContrasenia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__usuarioId__300424B4" FromRole="usuario" ToRole="orden" />
+          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__usuarioId__6383C8BA" FromRole="usuario" ToRole="orden" />
         </EntityType>
         <Association Name="FK__producto__catego__2C3393D0">
           <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
@@ -241,19 +319,19 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orden__productoI__30F848ED">
-          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+        <Association Name="FK__orden__statusId__6477ECF3">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="producto">
-              <PropertyRef Name="productoId" />
+            <Principal Role="status">
+              <PropertyRef Name="statusId" />
             </Principal>
             <Dependent Role="orden">
-              <PropertyRef Name="productoId" />
+              <PropertyRef Name="statusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orden__usuarioId__300424B4">
+        <Association Name="FK__orden__usuarioId__6383C8BA">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -262,6 +340,30 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
             </Principal>
             <Dependent Role="orden">
               <PropertyRef Name="usuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedidos__ordenId__693CA210">
+          <End Role="orden" Type="Self.orden" Multiplicity="0..1" />
+          <End Role="pedidos" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orden">
+              <PropertyRef Name="ordenId" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="ordenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedidos__product__68487DD7">
+          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+          <End Role="pedidos" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="productoId" />
+            </Principal>
+            <Dependent Role="pedidos">
+              <PropertyRef Name="productoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -277,10 +379,12 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BaseDatosWebEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BaseDatosWebEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="categorias" EntityType="Self.categoria" />
           <EntitySet Name="ordens" EntityType="Self.orden" />
+          <EntitySet Name="pedidos" EntityType="Self.pedido" />
           <EntitySet Name="productoes" EntityType="Self.producto" />
+          <EntitySet Name="status" EntityType="Self.status" />
           <EntitySet Name="subcategorias" EntityType="Self.subcategoria" />
           <EntitySet Name="usuarios" EntityType="Self.usuario" />
           <AssociationSet Name="FK__producto__catego__2C3393D0" Association="Self.FK__producto__catego__2C3393D0">
@@ -291,25 +395,55 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
             <End Role="categoria" EntitySet="categorias" />
             <End Role="subcategoria" EntitySet="subcategorias" />
           </AssociationSet>
-          <AssociationSet Name="FK__orden__productoI__30F848ED" Association="Self.FK__orden__productoI__30F848ED">
-            <End Role="producto" EntitySet="productoes" />
+          <AssociationSet Name="FK__orden__statusId__6477ECF3" Association="Self.FK__orden__statusId__6477ECF3">
+            <End Role="status" EntitySet="status" />
             <End Role="orden" EntitySet="ordens" />
           </AssociationSet>
-          <AssociationSet Name="FK__orden__usuarioId__300424B4" Association="Self.FK__orden__usuarioId__300424B4">
+          <AssociationSet Name="FK__orden__usuarioId__6383C8BA" Association="Self.FK__orden__usuarioId__6383C8BA">
             <End Role="usuario" EntitySet="usuarios" />
             <End Role="orden" EntitySet="ordens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedidos__ordenId__693CA210" Association="Self.FK__pedidos__ordenId__693CA210">
+            <End Role="orden" EntitySet="ordens" />
+            <End Role="pedidos" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedidos__product__68487DD7" Association="Self.FK__pedidos__product__68487DD7">
+            <End Role="producto" EntitySet="productoes" />
+            <End Role="pedidos" EntitySet="pedidos" />
           </AssociationSet>
           <AssociationSet Name="FK__producto__subcat__2D27B809" Association="Self.FK__producto__subcat__2D27B809">
             <End Role="subcategoria" EntitySet="subcategorias" />
             <End Role="producto" EntitySet="productoes" />
           </AssociationSet>
+          <FunctionImport Name="addProduct">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="precio" Mode="In" Type="Double" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="categoria" Mode="In" Type="String" />
+            <Parameter Name="idSubcategoria" Mode="In" Type="Int32" />
+            <Parameter Name="subcategoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="agregarProductoOrden">
+            <Parameter Name="productoId" Mode="In" Type="Int32" />
+            <Parameter Name="ordenId" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="usuarioId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="createSignUp">
+            <Parameter Name="correo" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="Int32" />
+            <Parameter Name="contraseña" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BaseDatosWebModelStoreContainer" CdmEntityContainer="BaseDatosWebEntities">
+        <EntityContainerMapping StorageEntityContainer="BaseDatosWebModelStoreContainer" CdmEntityContainer="BaseDatosWebEntities4">
           <EntitySetMapping Name="categorias">
             <EntityTypeMapping TypeName="BaseDatosWebModel.categoria">
               <MappingFragment StoreEntitySet="categoria">
@@ -321,11 +455,22 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
           <EntitySetMapping Name="ordens">
             <EntityTypeMapping TypeName="BaseDatosWebModel.orden">
               <MappingFragment StoreEntitySet="orden">
-                <ScalarProperty Name="idOrden" ColumnName="idOrden" />
+                <ScalarProperty Name="ordenId" ColumnName="ordenId" />
                 <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
-                <ScalarProperty Name="productoId" ColumnName="productoId" />
-                <ScalarProperty Name="ordenCantidad" ColumnName="ordenCantidad" />
                 <ScalarProperty Name="ordenTotal" ColumnName="ordenTotal" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="statusId" ColumnName="statusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedidos">
+            <EntityTypeMapping TypeName="BaseDatosWebModel.pedido">
+              <MappingFragment StoreEntitySet="pedidos">
+                <ScalarProperty Name="pedidoId" ColumnName="pedidoId" />
+                <ScalarProperty Name="ordenId" ColumnName="ordenId" />
+                <ScalarProperty Name="productoId" ColumnName="productoId" />
+                <ScalarProperty Name="pedidoCantidad" ColumnName="pedidoCantidad" />
+                <ScalarProperty Name="pedidoSubtotal" ColumnName="pedidoSubtotal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -338,6 +483,14 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
                 <ScalarProperty Name="productoExistencia" ColumnName="productoExistencia" />
                 <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
                 <ScalarProperty Name="subcategoriaId" ColumnName="subcategoriaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status">
+            <EntityTypeMapping TypeName="BaseDatosWebModel.status">
+              <MappingFragment StoreEntitySet="status">
+                <ScalarProperty Name="statusId" ColumnName="statusId" />
+                <ScalarProperty Name="statusNombre" ColumnName="statusNombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -362,6 +515,9 @@ error 6004: The table 'BaseDatosWeb.dbo.direccion' is referenced by a relationsh
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="addProduct" FunctionName="BaseDatosWebModel.Store.addProduct" />
+          <FunctionImportMapping FunctionImportName="agregarProductoOrden" FunctionName="BaseDatosWebModel.Store.agregarProductoOrden" />
+          <FunctionImportMapping FunctionImportName="createSignUp" FunctionName="BaseDatosWebModel.Store.createSignUp" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

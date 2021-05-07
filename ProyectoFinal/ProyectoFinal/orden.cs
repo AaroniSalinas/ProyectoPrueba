@@ -14,13 +14,21 @@ namespace ProyectoFinal
     
     public partial class orden
     {
-        public int idOrden { get; set; }
-        public Nullable<int> usuarioId { get; set; }
-        public Nullable<int> productoId { get; set; }
-        public Nullable<int> ordenCantidad { get; set; }
-        public Nullable<double> ordenTotal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public orden()
+        {
+            this.pedidos = new HashSet<pedido>();
+        }
     
-        public virtual producto producto { get; set; }
+        public int ordenId { get; set; }
+        public Nullable<int> usuarioId { get; set; }
+        public Nullable<double> ordenTotal { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> statusId { get; set; }
+    
+        public virtual status status { get; set; }
         public virtual usuario usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pedido> pedidos { get; set; }
     }
 }

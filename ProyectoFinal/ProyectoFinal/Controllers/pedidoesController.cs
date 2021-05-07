@@ -10,107 +10,116 @@ using System.Web.Mvc;
 
 namespace ProyectoFinal
 {
-    public class usuariosController : Controller
+    public class pedidoesController : Controller
     {
         private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
 
-        // GET: usuarios
+        // GET: pedidoes
         public async Task<ActionResult> Index()
         {
-            return View(await db.usuarios.ToListAsync());
+            var pedidos = db.pedidos.Include(p => p.orden).Include(p => p.producto);
+            return View(await pedidos.ToListAsync());
         }
 
-        // GET: usuarios/Details/5
+        // GET: pedidoes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
-            if (usuario == null)
+            pedido pedido = await db.pedidos.FindAsync(id);
+            if (pedido == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(pedido);
         }
 
-        // GET: usuarios/Create
+        // GET: pedidoes/Create
         public ActionResult Create()
         {
+            ViewBag.ordenId = new SelectList(db.ordens, "ordenId", "ordenId");
+            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre");
             return View();
         }
 
-        // POST: usuarios/Create
+        // POST: pedidoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
+        public async Task<ActionResult> Create([Bind(Include = "pedidoId,ordenId,productoId,pedidoCantidad,pedidoSubtotal")] pedido pedido)
         {
             if (ModelState.IsValid)
             {
-                db.usuarios.Add(usuario);
+                db.pedidos.Add(pedido);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+            ViewBag.ordenId = new SelectList(db.ordens, "ordenId", "ordenId", pedido.ordenId);
+            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre", pedido.productoId);
+            return View(pedido);
         }
 
-        // GET: usuarios/Edit/5
+        // GET: pedidoes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
-            if (usuario == null)
+            pedido pedido = await db.pedidos.FindAsync(id);
+            if (pedido == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            ViewBag.ordenId = new SelectList(db.ordens, "ordenId", "ordenId", pedido.ordenId);
+            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre", pedido.productoId);
+            return View(pedido);
         }
 
-        // POST: usuarios/Edit/5
+        // POST: pedidoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
+        public async Task<ActionResult> Edit([Bind(Include = "pedidoId,ordenId,productoId,pedidoCantidad,pedidoSubtotal")] pedido pedido)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
+                db.Entry(pedido).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(usuario);
+            ViewBag.ordenId = new SelectList(db.ordens, "ordenId", "ordenId", pedido.ordenId);
+            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre", pedido.productoId);
+            return View(pedido);
         }
 
-        // GET: usuarios/Delete/5
+        // GET: pedidoes/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
-            if (usuario == null)
+            pedido pedido = await db.pedidos.FindAsync(id);
+            if (pedido == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(pedido);
         }
 
-        // POST: usuarios/Delete/5
+        // POST: pedidoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            usuario usuario = await db.usuarios.FindAsync(id);
-            db.usuarios.Remove(usuario);
+            pedido pedido = await db.pedidos.FindAsync(id);
+            db.pedidos.Remove(pedido);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

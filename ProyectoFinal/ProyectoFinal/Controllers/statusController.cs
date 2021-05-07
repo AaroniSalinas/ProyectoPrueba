@@ -10,107 +10,107 @@ using System.Web.Mvc;
 
 namespace ProyectoFinal
 {
-    public class usuariosController : Controller
+    public class statusController : Controller
     {
         private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
 
-        // GET: usuarios
+        // GET: status
         public async Task<ActionResult> Index()
         {
-            return View(await db.usuarios.ToListAsync());
+            return View(await db.status.ToListAsync());
         }
 
-        // GET: usuarios/Details/5
+        // GET: status/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
-            if (usuario == null)
+            status status = await db.status.FindAsync(id);
+            if (status == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(status);
         }
 
-        // GET: usuarios/Create
+        // GET: status/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: usuarios/Create
+        // POST: status/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
+        public async Task<ActionResult> Create([Bind(Include = "statusId,statusNombre")] status status)
         {
             if (ModelState.IsValid)
             {
-                db.usuarios.Add(usuario);
+                db.status.Add(status);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+            return View(status);
         }
 
-        // GET: usuarios/Edit/5
+        // GET: status/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
-            if (usuario == null)
+            status status = await db.status.FindAsync(id);
+            if (status == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(status);
         }
 
-        // POST: usuarios/Edit/5
+        // POST: status/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
+        public async Task<ActionResult> Edit([Bind(Include = "statusId,statusNombre")] status status)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
+                db.Entry(status).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(usuario);
+            return View(status);
         }
 
-        // GET: usuarios/Delete/5
+        // GET: status/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
-            if (usuario == null)
+            status status = await db.status.FindAsync(id);
+            if (status == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(status);
         }
 
-        // POST: usuarios/Delete/5
+        // POST: status/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            usuario usuario = await db.usuarios.FindAsync(id);
-            db.usuarios.Remove(usuario);
+            status status = await db.status.FindAsync(id);
+            db.status.Remove(status);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

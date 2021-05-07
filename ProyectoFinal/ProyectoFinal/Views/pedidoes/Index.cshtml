@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProyectoFinal.pedido>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pedidoCantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pedidoSubtotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orden.ordenId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.producto.productoNombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedidoCantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedidoSubtotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orden.ordenId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.producto.productoNombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.pedidoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.pedidoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.pedidoId })
+        </td>
+    </tr>
+}
+
+</table>

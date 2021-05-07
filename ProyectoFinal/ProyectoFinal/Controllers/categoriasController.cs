@@ -6,13 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ProyectoFinal;
 
-namespace ProyectoFinal.Controllers
+namespace ProyectoFinal
 {
     public class categoriasController : Controller
     {
-        private BaseDatosWebEntities db = new BaseDatosWebEntities();
+        private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
 
         // GET: categorias
         public ActionResult Index()

@@ -4,31 +4,32 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using ProyectoFinal;
 
-namespace ProyectoFinal.Controllers
+namespace ProyectoFinal
 {
     public class ordensController : Controller
     {
-        private BaseDatosWebEntities db = new BaseDatosWebEntities();
+        private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
 
         // GET: ordens
         public ActionResult Index()
         {
-            var ordens = db.ordens.Include(o => o.producto).Include(o => o.usuario);
+            var ordens = db.ordens.Include(o => o.status).Include(o => o.usuario);
             return View(ordens.ToList());
         }
 
         // GET: ordens/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            orden orden = db.ordens.Find(id);
+            string query = "Select * from orden where ordenId = @p0";
+            orden orden = await db.ordens.SqlQuery(query, id).SingleOrDefaultAsync();
             if (orden == null)
             {
                 return HttpNotFound();
@@ -39,7 +40,7 @@ namespace ProyectoFinal.Controllers
         // GET: ordens/Create
         public ActionResult Create()
         {
-            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre");
+            ViewBag.statusId = new SelectList(db.status, "statusId", "statusNombre");
             ViewBag.usuarioId = new SelectList(db.usuarios, "usuarioId", "usuarioCorreo");
             return View();
         }
@@ -49,7 +50,7 @@ namespace ProyectoFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idOrden,usuarioId,productoId,ordenCantidad,ordenTotal")] orden orden)
+        public ActionResult Create([Bind(Include = "ordenId,usuarioId,ordenTotal,fecha,statusId")] orden orden)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +59,7 @@ namespace ProyectoFinal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre", orden.productoId);
+            ViewBag.statusId = new SelectList(db.status, "statusId", "statusNombre", orden.statusId);
             ViewBag.usuarioId = new SelectList(db.usuarios, "usuarioId", "usuarioCorreo", orden.usuarioId);
             return View(orden);
         }
@@ -75,7 +76,7 @@ namespace ProyectoFinal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre", orden.productoId);
+            ViewBag.statusId = new SelectList(db.status, "statusId", "statusNombre", orden.statusId);
             ViewBag.usuarioId = new SelectList(db.usuarios, "usuarioId", "usuarioCorreo", orden.usuarioId);
             return View(orden);
         }
@@ -85,7 +86,7 @@ namespace ProyectoFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idOrden,usuarioId,productoId,ordenCantidad,ordenTotal")] orden orden)
+        public ActionResult Edit([Bind(Include = "ordenId,usuarioId,ordenTotal,fecha,statusId")] orden orden)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +94,7 @@ namespace ProyectoFinal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.productoId = new SelectList(db.productoes, "productoId", "productoNombre", orden.productoId);
+            ViewBag.statusId = new SelectList(db.status, "statusId", "statusNombre", orden.statusId);
             ViewBag.usuarioId = new SelectList(db.usuarios, "usuarioId", "usuarioCorreo", orden.usuarioId);
             return View(orden);
         }

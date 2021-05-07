@@ -12,14 +12,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ordenCantidad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ordenCantidad)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.ordenTotal)
         </dt>
 
@@ -28,11 +20,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.producto.productoNombre)
+            @Html.DisplayNameFor(model => model.fecha)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.producto.productoNombre)
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status.statusNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status.statusNombre)
         </dd>
 
         <dt>
@@ -46,6 +46,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idOrden }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ordenId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
