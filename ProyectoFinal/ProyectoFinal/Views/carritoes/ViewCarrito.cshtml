@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ProyectoFinal.carrito>
+
+@{
+    ViewBag.Title = "ViewCarrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewCarrito</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pedidoCantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pedidoSubtotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.producto.productoNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuario.usuarioCorreo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedidoCantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedidoSubtotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.producto.productoNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario.usuarioCorreo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.carritoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.carritoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.carritoId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -17,6 +17,7 @@ namespace ProyectoFinal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public usuario()
         {
+            this.carritoes = new HashSet<carrito>();
             this.ordens = new HashSet<orden>();
         }
     
@@ -27,6 +28,8 @@ namespace ProyectoFinal
         public string usuarioTelefono { get; set; }
         public string usuarioContrasenia { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<carrito> carritoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<orden> ordens { get; set; }
     }

@@ -15,10 +15,10 @@ namespace ProyectoFinal
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class BaseDatosWebEntities4 : DbContext
+    public partial class BaseDatosWebEntities6 : DbContext
     {
-        public BaseDatosWebEntities4()
-            : base("name=BaseDatosWebEntities4")
+        public BaseDatosWebEntities6()
+            : base("name=BaseDatosWebEntities6")
         {
         }
     
@@ -27,6 +27,7 @@ namespace ProyectoFinal
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<carrito> carritoes { get; set; }
         public virtual DbSet<categoria> categorias { get; set; }
         public virtual DbSet<orden> ordens { get; set; }
         public virtual DbSet<pedido> pedidos { get; set; }
@@ -113,7 +114,5 @@ namespace ProyectoFinal
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("createSignUp", correoParameter, nombreParameter, apellidoParameter, telefonoParameter, contraseñaParameter);
         }
-
-        public System.Data.Entity.DbSet<ProyectoFinal.carrito> carritoes { get; set; }
     }
 }
