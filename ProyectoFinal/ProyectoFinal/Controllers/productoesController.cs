@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -12,23 +11,23 @@ namespace ProyectoFinal
 {
     public class productoesController : Controller
     {
-        private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
+        private masterEntities db = new masterEntities();
 
         // GET: productoes
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var productoes = db.productoes.Include(p => p.categoria).Include(p => p.subcategoria);
-            return View(await productoes.ToListAsync());
+            var producto = db.producto.Include(p => p.categoria).Include(p => p.subcategoria);
+            return View(producto.ToList());
         }
 
         // GET: productoes/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            producto producto = await db.productoes.FindAsync(id);
+            producto producto = db.producto.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -39,73 +38,73 @@ namespace ProyectoFinal
         // GET: productoes/Create
         public ActionResult Create()
         {
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre");
-            ViewBag.subcategoriaId = new SelectList(db.subcategorias, "subcategoriaId", "subcategoriaNombre");
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre");
+            ViewBag.subcategoriaId = new SelectList(db.subcategoria, "subcategoriaId", "subcategoriaNombre");
             return View();
         }
 
         // POST: productoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "productoId,productoNombre,productoPrecio,productoExistencia,categoriaId,subcategoriaId")] producto producto)
+        public ActionResult Create([Bind(Include = "productoId,productoNombre,productoPrecio,productoExistencia,categoriaId,subcategoriaId")] producto producto)
         {
             if (ModelState.IsValid)
             {
-                db.productoes.Add(producto);
-                await db.SaveChangesAsync();
+                db.producto.Add(producto);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre", producto.categoriaId);
-            ViewBag.subcategoriaId = new SelectList(db.subcategorias, "subcategoriaId", "subcategoriaNombre", producto.subcategoriaId);
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre", producto.categoriaId);
+            ViewBag.subcategoriaId = new SelectList(db.subcategoria, "subcategoriaId", "subcategoriaNombre", producto.subcategoriaId);
             return View(producto);
         }
 
         // GET: productoes/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            producto producto = await db.productoes.FindAsync(id);
+            producto producto = db.producto.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre", producto.categoriaId);
-            ViewBag.subcategoriaId = new SelectList(db.subcategorias, "subcategoriaId", "subcategoriaNombre", producto.subcategoriaId);
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre", producto.categoriaId);
+            ViewBag.subcategoriaId = new SelectList(db.subcategoria, "subcategoriaId", "subcategoriaNombre", producto.subcategoriaId);
             return View(producto);
         }
 
         // POST: productoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "productoId,productoNombre,productoPrecio,productoExistencia,categoriaId,subcategoriaId")] producto producto)
+        public ActionResult Edit([Bind(Include = "productoId,productoNombre,productoPrecio,productoExistencia,categoriaId,subcategoriaId")] producto producto)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(producto).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre", producto.categoriaId);
-            ViewBag.subcategoriaId = new SelectList(db.subcategorias, "subcategoriaId", "subcategoriaNombre", producto.subcategoriaId);
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre", producto.categoriaId);
+            ViewBag.subcategoriaId = new SelectList(db.subcategoria, "subcategoriaId", "subcategoriaNombre", producto.subcategoriaId);
             return View(producto);
         }
 
         // GET: productoes/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            producto producto = await db.productoes.FindAsync(id);
+            producto producto = db.producto.Find(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -116,11 +115,11 @@ namespace ProyectoFinal
         // POST: productoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            producto producto = await db.productoes.FindAsync(id);
-            db.productoes.Remove(producto);
-            await db.SaveChangesAsync();
+            producto producto = db.producto.Find(id);
+            db.producto.Remove(producto);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

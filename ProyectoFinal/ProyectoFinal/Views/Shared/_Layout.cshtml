@@ -32,20 +32,31 @@ Fuentes: League Spartan, League Gothic-->
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active colorp-dark" aria-current="page" href="~/Home/vistaProducto">MAQUILLAJE</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active colorp-dark" href="#" id="navbarDropdownMaquillaje" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            MAQUILLAJE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMaquillaje">
+                            <a class="dropdown-item" href="~/Home/Labios">Labios</a>
+                            <a class="dropdown-item" href="~/Home/Rostro">Rostro</a>
+                            <a class="dropdown-item" href="~/Home/Ojos">Ojos</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link colorp-dark" href="~/Home/vistaProducto">CUIDADO DE LA PIEL</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active colorp-dark" href="#" id="navbarDropdownMaquillaje" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            CUIDADO DE LA PIEL
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMaquillaje">
+                            <a class="dropdown-item" href="~/Home/Hidratantes">Hidratantes</a>
+                            <a class="dropdown-item" href="~/Home/Limpiadores">Limipiadores</a>
+                            <a class="dropdown-item" href="~/Home/Mascarillas">Mascarillas</a>
+                            <a class="dropdown-item" href="~/Home/Serums">Sérums</a>
+                            <a class="dropdown-item" href="~/Home/Tonificantes">Tonificantes</a>
+                        </div>
                     </li>
-                    @*<li class="nav-item">
-                            <a class="nav-link active colorp-dark" aria-current="page" href="~/Home/Carrito"><i class="fas fa-shopping-cart"></i></a>
-                        </li>*@
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-4 bgp-medium" type="search" placeholder="Buscar" aria-label="Buscar">
-                    <button class="btn bgp-medium" type="submit"><i class="fas fa-search"></i></button>
-                </form>
+
                 <a class="nav-link colorp-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user"></i>
                 </a>
@@ -53,6 +64,14 @@ Fuentes: League Spartan, League Gothic-->
                     <li><a class="dropdown-item colorp-light " href="~/Home/InicioSesion">Iniciar Sesión</a></li>
                     <li><a class="dropdown-item colorp-light " href="~/Home/Registro">Registrarse</a></li>
                 </ul>
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Home/Logout">Cerrar sesión</a>
+                        </li>
+                    }
+                }
                 <a class="nav-link active colorp-dark" aria-current="page" href="~/Home/Carrito"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
@@ -69,9 +88,13 @@ Fuentes: League Spartan, League Gothic-->
     </div>
 
     <div class="card-footer bgp-dark colorp-light">
-        INFO DEL FOOTER
-    </div
+        <a class="colorp-light" href="https://www.instagram.com/makeupbyaaroni" title="Instagram"><i class="fab fa-instagram"> </i></a>
+        <a class="colorp-light" href=" https://www.facebook.com/makeupbyaaroni" title="Facebook"><i class="fab fa-facebook"> </i></a>
+        <a class="colorp-light" href=" https://wa.link/oncj22>" title="WhatsApp"> <i class="fab fa-whatsapp"> </i></a>
 
+
+
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

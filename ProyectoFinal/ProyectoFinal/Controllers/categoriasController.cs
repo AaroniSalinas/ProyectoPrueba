@@ -11,12 +11,12 @@ namespace ProyectoFinal
 {
     public class categoriasController : Controller
     {
-        private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
+        private masterEntities db = new masterEntities();
 
         // GET: categorias
         public ActionResult Index()
         {
-            return View(db.categorias.ToList());
+            return View(db.categoria.ToList());
         }
 
         // GET: categorias/Details/5
@@ -26,7 +26,7 @@ namespace ProyectoFinal
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            categoria categoria = db.categorias.Find(id);
+            categoria categoria = db.categoria.Find(id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -41,15 +41,15 @@ namespace ProyectoFinal
         }
 
         // POST: categorias/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "categoriaId,categoriaNombre")] categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                db.categorias.Add(categoria);
+                db.categoria.Add(categoria);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -64,7 +64,7 @@ namespace ProyectoFinal
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            categoria categoria = db.categorias.Find(id);
+            categoria categoria = db.categoria.Find(id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -73,8 +73,8 @@ namespace ProyectoFinal
         }
 
         // POST: categorias/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "categoriaId,categoriaNombre")] categoria categoria)
@@ -95,7 +95,7 @@ namespace ProyectoFinal
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            categoria categoria = db.categorias.Find(id);
+            categoria categoria = db.categoria.Find(id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -108,8 +108,8 @@ namespace ProyectoFinal
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            categoria categoria = db.categorias.Find(id);
-            db.categorias.Remove(categoria);
+            categoria categoria = db.categoria.Find(id);
+            db.categoria.Remove(categoria);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace ProyectoFinal
 {
+    [Authorize]
     public class usuariosController : Controller
     {
-        private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
+        private masterEntities db = new masterEntities();
 
         // GET: usuarios
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.usuarios.ToListAsync());
+            return View(db.usuario.ToList());
         }
 
         // GET: usuarios/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
+            usuario usuario = db.usuario.Find(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -42,16 +42,16 @@ namespace ProyectoFinal
         }
 
         // POST: usuarios/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
+        public ActionResult Create([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                db.usuarios.Add(usuario);
-                await db.SaveChangesAsync();
+                db.usuario.Add(usuario);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -59,13 +59,13 @@ namespace ProyectoFinal
         }
 
         // GET: usuarios/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
+            usuario usuario = db.usuario.Find(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -74,29 +74,29 @@ namespace ProyectoFinal
         }
 
         // POST: usuarios/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
+        public ActionResult Edit([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(usuario).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(usuario);
         }
 
         // GET: usuarios/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            usuario usuario = await db.usuarios.FindAsync(id);
+            usuario usuario = db.usuario.Find(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -107,11 +107,11 @@ namespace ProyectoFinal
         // POST: usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            usuario usuario = await db.usuarios.FindAsync(id);
-            db.usuarios.Remove(usuario);
-            await db.SaveChangesAsync();
+            usuario usuario = db.usuario.Find(id);
+            db.usuario.Remove(usuario);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

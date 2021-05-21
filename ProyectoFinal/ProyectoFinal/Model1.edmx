@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BaseDatosWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="categoria">
           <Key>
             <PropertyRef Name="categoriaId" />
@@ -69,7 +69,7 @@
           <Property Name="usuarioTelefono" Type="varchar" MaxLength="10" />
           <Property Name="usuarioContrasenia" Type="varchar" MaxLength="30" />
         </EntityType>
-        <Association Name="FK__orden__statusId__6477ECF3">
+        <Association Name="FK__orden__statusId__0CDAE408">
           <End Role="status" Type="Self.status" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -81,7 +81,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orden__usuarioId__6383C8BA">
+        <Association Name="FK__orden__usuarioId__0BE6BFCF">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -93,7 +93,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pedidos__ordenId__693CA210">
+        <Association Name="FK__pedidos__ordenId__1B29035F">
           <End Role="orden" Type="Self.orden" Multiplicity="0..1" />
           <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -105,7 +105,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pedidos__product__68487DD7">
+        <Association Name="FK__pedidos__product__1A34DF26">
           <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
           <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,7 +117,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__producto__catego__2C3393D0">
+        <Association Name="FK__producto__catego__16644E42">
           <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
           <End Role="producto" Type="Self.producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +129,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__producto__subcat__2D27B809">
+        <Association Name="FK__producto__subcat__1758727B">
           <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="0..1" />
           <End Role="producto" Type="Self.producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,7 +141,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__subcatego__categ__29572725">
+        <Association Name="FK__subcatego__categ__07220AB2">
           <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
           <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,29 +153,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="addProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nombre" Type="varchar" Mode="In" />
-          <Parameter Name="precio" Type="float" Mode="In" />
-          <Parameter Name="cantidad" Type="int" Mode="In" />
-          <Parameter Name="idCategoria" Type="int" Mode="In" />
-          <Parameter Name="categoria" Type="varchar" Mode="In" />
-          <Parameter Name="idSubcategoria" Type="int" Mode="In" />
-          <Parameter Name="subcategoria" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="agregarProductoOrden" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="productoId" Type="int" Mode="In" />
-          <Parameter Name="ordenId" Type="int" Mode="In" />
-          <Parameter Name="cantidad" Type="int" Mode="In" />
-          <Parameter Name="usuarioId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="createSignUp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="correo" Type="varchar" Mode="In" />
-          <Parameter Name="nombre" Type="varchar" Mode="In" />
-          <Parameter Name="apellido" Type="varchar" Mode="In" />
-          <Parameter Name="telefono" Type="int" Mode="In" />
-          <Parameter Name="contraseña" Type="varchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="BaseDatosWebModelStoreContainer">
+        <EntityContainer Name="masterModelStoreContainer">
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orden" EntityType="Self.orden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pedidos" EntityType="Self.pedidos" Schema="dbo" store:Type="Tables" />
@@ -183,31 +161,31 @@
           <EntitySet Name="status" EntityType="Self.status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__orden__statusId__6477ECF3" Association="Self.FK__orden__statusId__6477ECF3">
+          <AssociationSet Name="FK__orden__statusId__0CDAE408" Association="Self.FK__orden__statusId__0CDAE408">
             <End Role="status" EntitySet="status" />
             <End Role="orden" EntitySet="orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__orden__usuarioId__6383C8BA" Association="Self.FK__orden__usuarioId__6383C8BA">
+          <AssociationSet Name="FK__orden__usuarioId__0BE6BFCF" Association="Self.FK__orden__usuarioId__0BE6BFCF">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="orden" EntitySet="orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__pedidos__ordenId__693CA210" Association="Self.FK__pedidos__ordenId__693CA210">
+          <AssociationSet Name="FK__pedidos__ordenId__1B29035F" Association="Self.FK__pedidos__ordenId__1B29035F">
             <End Role="orden" EntitySet="orden" />
             <End Role="pedidos" EntitySet="pedidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__pedidos__product__68487DD7" Association="Self.FK__pedidos__product__68487DD7">
+          <AssociationSet Name="FK__pedidos__product__1A34DF26" Association="Self.FK__pedidos__product__1A34DF26">
             <End Role="producto" EntitySet="producto" />
             <End Role="pedidos" EntitySet="pedidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__producto__catego__2C3393D0" Association="Self.FK__producto__catego__2C3393D0">
+          <AssociationSet Name="FK__producto__catego__16644E42" Association="Self.FK__producto__catego__16644E42">
             <End Role="categoria" EntitySet="categoria" />
             <End Role="producto" EntitySet="producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__producto__subcat__2D27B809" Association="Self.FK__producto__subcat__2D27B809">
+          <AssociationSet Name="FK__producto__subcat__1758727B" Association="Self.FK__producto__subcat__1758727B">
             <End Role="subcategoria" EntitySet="subcategoria" />
             <End Role="producto" EntitySet="producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__subcatego__categ__29572725" Association="Self.FK__subcatego__categ__29572725">
+          <AssociationSet Name="FK__subcatego__categ__07220AB2" Association="Self.FK__subcatego__categ__07220AB2">
             <End Role="categoria" EntitySet="categoria" />
             <End Role="subcategoria" EntitySet="subcategoria" />
           </AssociationSet>
@@ -216,15 +194,15 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BaseDatosWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="categoria">
           <Key>
             <PropertyRef Name="categoriaId" />
           </Key>
           <Property Name="categoriaId" Type="Int32" Nullable="false" />
           <Property Name="categoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="productoes" Relationship="Self.FK__producto__catego__2C3393D0" FromRole="categoria" ToRole="producto" />
-          <NavigationProperty Name="subcategorias" Relationship="Self.FK__subcatego__categ__29572725" FromRole="categoria" ToRole="subcategoria" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__producto__catego__16644E42" FromRole="categoria" ToRole="producto" />
+          <NavigationProperty Name="subcategoria" Relationship="Self.FK__subcatego__categ__07220AB2" FromRole="categoria" ToRole="subcategoria" />
         </EntityType>
         <EntityType Name="orden">
           <Key>
@@ -235,11 +213,11 @@
           <Property Name="ordenTotal" Type="Double" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="statusId" Type="Int32" />
-          <NavigationProperty Name="status" Relationship="Self.FK__orden__statusId__6477ECF3" FromRole="orden" ToRole="status" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK__orden__usuarioId__6383C8BA" FromRole="orden" ToRole="usuario" />
-          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedidos__ordenId__693CA210" FromRole="orden" ToRole="pedidos" />
+          <NavigationProperty Name="status" Relationship="Self.FK__orden__statusId__0CDAE408" FromRole="orden" ToRole="status" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__orden__usuarioId__0BE6BFCF" FromRole="orden" ToRole="usuario" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedidos__ordenId__1B29035F" FromRole="orden" ToRole="pedidos" />
         </EntityType>
-        <EntityType Name="pedido">
+        <EntityType Name="pedidos">
           <Key>
             <PropertyRef Name="pedidoId" />
           </Key>
@@ -248,8 +226,8 @@
           <Property Name="productoId" Type="Int32" />
           <Property Name="pedidoCantidad" Type="Int32" />
           <Property Name="pedidoSubtotal" Type="Double" />
-          <NavigationProperty Name="orden" Relationship="Self.FK__pedidos__ordenId__693CA210" FromRole="pedidos" ToRole="orden" />
-          <NavigationProperty Name="producto" Relationship="Self.FK__pedidos__product__68487DD7" FromRole="pedidos" ToRole="producto" />
+          <NavigationProperty Name="orden" Relationship="Self.FK__pedidos__ordenId__1B29035F" FromRole="pedidos" ToRole="orden" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__pedidos__product__1A34DF26" FromRole="pedidos" ToRole="producto" />
         </EntityType>
         <EntityType Name="producto">
           <Key>
@@ -261,9 +239,9 @@
           <Property Name="productoExistencia" Type="Int32" />
           <Property Name="categoriaId" Type="Int32" />
           <Property Name="subcategoriaId" Type="Int32" />
-          <NavigationProperty Name="categoria" Relationship="Self.FK__producto__catego__2C3393D0" FromRole="producto" ToRole="categoria" />
-          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedidos__product__68487DD7" FromRole="producto" ToRole="pedidos" />
-          <NavigationProperty Name="subcategoria" Relationship="Self.FK__producto__subcat__2D27B809" FromRole="producto" ToRole="subcategoria" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK__producto__catego__16644E42" FromRole="producto" ToRole="categoria" />
+          <NavigationProperty Name="pedidos" Relationship="Self.FK__pedidos__product__1A34DF26" FromRole="producto" ToRole="pedidos" />
+          <NavigationProperty Name="subcategoria" Relationship="Self.FK__producto__subcat__1758727B" FromRole="producto" ToRole="subcategoria" />
         </EntityType>
         <EntityType Name="status">
           <Key>
@@ -271,7 +249,7 @@
           </Key>
           <Property Name="statusId" Type="Int32" Nullable="false" />
           <Property Name="statusNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__statusId__6477ECF3" FromRole="status" ToRole="orden" />
+          <NavigationProperty Name="orden" Relationship="Self.FK__orden__statusId__0CDAE408" FromRole="status" ToRole="orden" />
         </EntityType>
         <EntityType Name="subcategoria">
           <Key>
@@ -280,8 +258,8 @@
           <Property Name="subcategoriaId" Type="Int32" Nullable="false" />
           <Property Name="categoriaId" Type="Int32" />
           <Property Name="subcategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="categoria" Relationship="Self.FK__subcatego__categ__29572725" FromRole="subcategoria" ToRole="categoria" />
-          <NavigationProperty Name="productoes" Relationship="Self.FK__producto__subcat__2D27B809" FromRole="subcategoria" ToRole="producto" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK__subcatego__categ__07220AB2" FromRole="subcategoria" ToRole="categoria" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__producto__subcat__1758727B" FromRole="subcategoria" ToRole="producto" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -293,9 +271,9 @@
           <Property Name="usuarioApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="usuarioTelefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="usuarioContrasenia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ordens" Relationship="Self.FK__orden__usuarioId__6383C8BA" FromRole="usuario" ToRole="orden" />
+          <NavigationProperty Name="orden" Relationship="Self.FK__orden__usuarioId__0BE6BFCF" FromRole="usuario" ToRole="orden" />
         </EntityType>
-        <Association Name="FK__producto__catego__2C3393D0">
+        <Association Name="FK__producto__catego__16644E42">
           <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
           <End Role="producto" Type="Self.producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -307,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__subcatego__categ__29572725">
+        <Association Name="FK__subcatego__categ__07220AB2">
           <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
           <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="*" />
           <ReferentialConstraint>
@@ -319,7 +297,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orden__statusId__6477ECF3">
+        <Association Name="FK__orden__statusId__0CDAE408">
           <End Role="status" Type="Self.status" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -331,7 +309,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orden__usuarioId__6383C8BA">
+        <Association Name="FK__orden__usuarioId__0BE6BFCF">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
           <End Role="orden" Type="Self.orden" Multiplicity="*" />
           <ReferentialConstraint>
@@ -343,9 +321,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pedidos__ordenId__693CA210">
+        <Association Name="FK__pedidos__ordenId__1B29035F">
           <End Role="orden" Type="Self.orden" Multiplicity="0..1" />
-          <End Role="pedidos" Type="Self.pedido" Multiplicity="*" />
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="orden">
               <PropertyRef Name="ordenId" />
@@ -355,9 +333,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__pedidos__product__68487DD7">
+        <Association Name="FK__pedidos__product__1A34DF26">
           <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
-          <End Role="pedidos" Type="Self.pedido" Multiplicity="*" />
+          <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="producto">
               <PropertyRef Name="productoId" />
@@ -367,7 +345,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__producto__subcat__2D27B809">
+        <Association Name="FK__producto__subcat__1758727B">
           <End Role="subcategoria" Type="Self.subcategoria" Multiplicity="0..1" />
           <End Role="producto" Type="Self.producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -379,81 +357,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BaseDatosWebEntities4" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="categorias" EntityType="Self.categoria" />
-          <EntitySet Name="ordens" EntityType="Self.orden" />
-          <EntitySet Name="pedidos" EntityType="Self.pedido" />
-          <EntitySet Name="productoes" EntityType="Self.producto" />
+        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categoria" EntityType="Self.categoria" />
+          <EntitySet Name="orden" EntityType="Self.orden" />
+          <EntitySet Name="pedidos" EntityType="Self.pedidos" />
+          <EntitySet Name="producto" EntityType="Self.producto" />
           <EntitySet Name="status" EntityType="Self.status" />
-          <EntitySet Name="subcategorias" EntityType="Self.subcategoria" />
-          <EntitySet Name="usuarios" EntityType="Self.usuario" />
-          <AssociationSet Name="FK__producto__catego__2C3393D0" Association="Self.FK__producto__catego__2C3393D0">
-            <End Role="categoria" EntitySet="categorias" />
-            <End Role="producto" EntitySet="productoes" />
+          <EntitySet Name="subcategoria" EntityType="Self.subcategoria" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK__producto__catego__16644E42" Association="Self.FK__producto__catego__16644E42">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="producto" EntitySet="producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__subcatego__categ__29572725" Association="Self.FK__subcatego__categ__29572725">
-            <End Role="categoria" EntitySet="categorias" />
-            <End Role="subcategoria" EntitySet="subcategorias" />
+          <AssociationSet Name="FK__subcatego__categ__07220AB2" Association="Self.FK__subcatego__categ__07220AB2">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="subcategoria" EntitySet="subcategoria" />
           </AssociationSet>
-          <AssociationSet Name="FK__orden__statusId__6477ECF3" Association="Self.FK__orden__statusId__6477ECF3">
+          <AssociationSet Name="FK__orden__statusId__0CDAE408" Association="Self.FK__orden__statusId__0CDAE408">
             <End Role="status" EntitySet="status" />
-            <End Role="orden" EntitySet="ordens" />
+            <End Role="orden" EntitySet="orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__orden__usuarioId__6383C8BA" Association="Self.FK__orden__usuarioId__6383C8BA">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="orden" EntitySet="ordens" />
+          <AssociationSet Name="FK__orden__usuarioId__0BE6BFCF" Association="Self.FK__orden__usuarioId__0BE6BFCF">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="orden" EntitySet="orden" />
           </AssociationSet>
-          <AssociationSet Name="FK__pedidos__ordenId__693CA210" Association="Self.FK__pedidos__ordenId__693CA210">
-            <End Role="orden" EntitySet="ordens" />
+          <AssociationSet Name="FK__pedidos__ordenId__1B29035F" Association="Self.FK__pedidos__ordenId__1B29035F">
+            <End Role="orden" EntitySet="orden" />
             <End Role="pedidos" EntitySet="pedidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__pedidos__product__68487DD7" Association="Self.FK__pedidos__product__68487DD7">
-            <End Role="producto" EntitySet="productoes" />
+          <AssociationSet Name="FK__pedidos__product__1A34DF26" Association="Self.FK__pedidos__product__1A34DF26">
+            <End Role="producto" EntitySet="producto" />
             <End Role="pedidos" EntitySet="pedidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__producto__subcat__2D27B809" Association="Self.FK__producto__subcat__2D27B809">
-            <End Role="subcategoria" EntitySet="subcategorias" />
-            <End Role="producto" EntitySet="productoes" />
+          <AssociationSet Name="FK__producto__subcat__1758727B" Association="Self.FK__producto__subcat__1758727B">
+            <End Role="subcategoria" EntitySet="subcategoria" />
+            <End Role="producto" EntitySet="producto" />
           </AssociationSet>
-          <FunctionImport Name="addProduct">
-            <Parameter Name="nombre" Mode="In" Type="String" />
-            <Parameter Name="precio" Mode="In" Type="Double" />
-            <Parameter Name="cantidad" Mode="In" Type="Int32" />
-            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
-            <Parameter Name="categoria" Mode="In" Type="String" />
-            <Parameter Name="idSubcategoria" Mode="In" Type="Int32" />
-            <Parameter Name="subcategoria" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="agregarProductoOrden">
-            <Parameter Name="productoId" Mode="In" Type="Int32" />
-            <Parameter Name="ordenId" Mode="In" Type="Int32" />
-            <Parameter Name="cantidad" Mode="In" Type="Int32" />
-            <Parameter Name="usuarioId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="createSignUp">
-            <Parameter Name="correo" Mode="In" Type="String" />
-            <Parameter Name="nombre" Mode="In" Type="String" />
-            <Parameter Name="apellido" Mode="In" Type="String" />
-            <Parameter Name="telefono" Mode="In" Type="Int32" />
-            <Parameter Name="contraseña" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BaseDatosWebModelStoreContainer" CdmEntityContainer="BaseDatosWebEntities4">
-          <EntitySetMapping Name="categorias">
-            <EntityTypeMapping TypeName="BaseDatosWebModel.categoria">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+          <EntitySetMapping Name="categoria">
+            <EntityTypeMapping TypeName="masterModel.categoria">
               <MappingFragment StoreEntitySet="categoria">
                 <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
                 <ScalarProperty Name="categoriaNombre" ColumnName="categoriaNombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ordens">
-            <EntityTypeMapping TypeName="BaseDatosWebModel.orden">
+          <EntitySetMapping Name="orden">
+            <EntityTypeMapping TypeName="masterModel.orden">
               <MappingFragment StoreEntitySet="orden">
                 <ScalarProperty Name="ordenId" ColumnName="ordenId" />
                 <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
@@ -464,7 +420,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pedidos">
-            <EntityTypeMapping TypeName="BaseDatosWebModel.pedido">
+            <EntityTypeMapping TypeName="masterModel.pedidos">
               <MappingFragment StoreEntitySet="pedidos">
                 <ScalarProperty Name="pedidoId" ColumnName="pedidoId" />
                 <ScalarProperty Name="ordenId" ColumnName="ordenId" />
@@ -474,8 +430,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="productoes">
-            <EntityTypeMapping TypeName="BaseDatosWebModel.producto">
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="masterModel.producto">
               <MappingFragment StoreEntitySet="producto">
                 <ScalarProperty Name="productoId" ColumnName="productoId" />
                 <ScalarProperty Name="productoNombre" ColumnName="productoNombre" />
@@ -487,15 +443,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="status">
-            <EntityTypeMapping TypeName="BaseDatosWebModel.status">
+            <EntityTypeMapping TypeName="masterModel.status">
               <MappingFragment StoreEntitySet="status">
                 <ScalarProperty Name="statusId" ColumnName="statusId" />
                 <ScalarProperty Name="statusNombre" ColumnName="statusNombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="subcategorias">
-            <EntityTypeMapping TypeName="BaseDatosWebModel.subcategoria">
+          <EntitySetMapping Name="subcategoria">
+            <EntityTypeMapping TypeName="masterModel.subcategoria">
               <MappingFragment StoreEntitySet="subcategoria">
                 <ScalarProperty Name="subcategoriaId" ColumnName="subcategoriaId" />
                 <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
@@ -503,8 +459,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="usuarios">
-            <EntityTypeMapping TypeName="BaseDatosWebModel.usuario">
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="masterModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
                 <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
                 <ScalarProperty Name="usuarioCorreo" ColumnName="usuarioCorreo" />
@@ -515,9 +471,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="addProduct" FunctionName="BaseDatosWebModel.Store.addProduct" />
-          <FunctionImportMapping FunctionImportName="agregarProductoOrden" FunctionName="BaseDatosWebModel.Store.agregarProductoOrden" />
-          <FunctionImportMapping FunctionImportName="createSignUp" FunctionName="BaseDatosWebModel.Store.createSignUp" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -532,10 +485,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

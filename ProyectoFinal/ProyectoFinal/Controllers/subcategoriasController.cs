@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -12,23 +11,23 @@ namespace ProyectoFinal
 {
     public class subcategoriasController : Controller
     {
-        private BaseDatosWebEntities4 db = new BaseDatosWebEntities4();
+        private masterEntities db = new masterEntities();
 
         // GET: subcategorias
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var subcategorias = db.subcategorias.Include(s => s.categoria);
-            return View(await subcategorias.ToListAsync());
+            var subcategoria = db.subcategoria.Include(s => s.categoria);
+            return View(subcategoria.ToList());
         }
 
         // GET: subcategorias/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            subcategoria subcategoria = await db.subcategorias.FindAsync(id);
+            subcategoria subcategoria = db.subcategoria.Find(id);
             if (subcategoria == null)
             {
                 return HttpNotFound();
@@ -39,69 +38,69 @@ namespace ProyectoFinal
         // GET: subcategorias/Create
         public ActionResult Create()
         {
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre");
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre");
             return View();
         }
 
         // POST: subcategorias/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "subcategoriaId,categoriaId,subcategoriaNombre")] subcategoria subcategoria)
+        public ActionResult Create([Bind(Include = "subcategoriaId,categoriaId,subcategoriaNombre")] subcategoria subcategoria)
         {
             if (ModelState.IsValid)
             {
-                db.subcategorias.Add(subcategoria);
-                await db.SaveChangesAsync();
+                db.subcategoria.Add(subcategoria);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre", subcategoria.categoriaId);
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre", subcategoria.categoriaId);
             return View(subcategoria);
         }
 
         // GET: subcategorias/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            subcategoria subcategoria = await db.subcategorias.FindAsync(id);
+            subcategoria subcategoria = db.subcategoria.Find(id);
             if (subcategoria == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre", subcategoria.categoriaId);
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre", subcategoria.categoriaId);
             return View(subcategoria);
         }
 
         // POST: subcategorias/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "subcategoriaId,categoriaId,subcategoriaNombre")] subcategoria subcategoria)
+        public ActionResult Edit([Bind(Include = "subcategoriaId,categoriaId,subcategoriaNombre")] subcategoria subcategoria)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(subcategoria).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.categoriaId = new SelectList(db.categorias, "categoriaId", "categoriaNombre", subcategoria.categoriaId);
+            ViewBag.categoriaId = new SelectList(db.categoria, "categoriaId", "categoriaNombre", subcategoria.categoriaId);
             return View(subcategoria);
         }
 
         // GET: subcategorias/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            subcategoria subcategoria = await db.subcategorias.FindAsync(id);
+            subcategoria subcategoria = db.subcategoria.Find(id);
             if (subcategoria == null)
             {
                 return HttpNotFound();
@@ -112,11 +111,11 @@ namespace ProyectoFinal
         // POST: subcategorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            subcategoria subcategoria = await db.subcategorias.FindAsync(id);
-            db.subcategorias.Remove(subcategoria);
-            await db.SaveChangesAsync();
+            subcategoria subcategoria = db.subcategoria.Find(id);
+            db.subcategoria.Remove(subcategoria);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

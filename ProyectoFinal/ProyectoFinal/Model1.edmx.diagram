@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cb996cf2cdf145b69277d51d52db919a" Name="Diagram1">
-        <EntityTypeShape EntityType="BaseDatosWebModel.categoria" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseDatosWebModel.orden" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseDatosWebModel.pedido" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseDatosWebModel.producto" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseDatosWebModel.status" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseDatosWebModel.subcategoria" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseDatosWebModel.usuario" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
-        <AssociationConnector Association="BaseDatosWebModel.FK__producto__catego__2C3393D0" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseDatosWebModel.FK__subcatego__categ__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseDatosWebModel.FK__orden__statusId__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseDatosWebModel.FK__orden__usuarioId__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseDatosWebModel.FK__pedidos__ordenId__693CA210" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseDatosWebModel.FK__pedidos__product__68487DD7" ManuallyRouted="false" />
-        <AssociationConnector Association="BaseDatosWebModel.FK__producto__subcat__2D27B809" ManuallyRouted="false" />
+      <Diagram DiagramId="0e29c669e8ae4f70a296ee161254dda8" Name="Diagram1">
+        <EntityTypeShape EntityType="masterModel.categoria" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.orden" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.pedidos" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.producto" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.status" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.subcategoria" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.usuario" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="masterModel.FK__producto__catego__16644E42" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__subcatego__categ__07220AB2" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__orden__statusId__0CDAE408" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__orden__usuarioId__0BE6BFCF" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__pedidos__ordenId__1B29035F" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__pedidos__product__1A34DF26" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__producto__subcat__1758727B" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

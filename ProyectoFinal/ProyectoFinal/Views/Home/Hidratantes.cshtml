@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ProyectoFinal.producto>
+
+@{
+    ViewBag.Title = "Hidratantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hidratantes</h2>
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            if (item.subcategoria.subcategoriaNombre == "Hidratantes")
+            {
+                <div class="col-sm">
+                    <div class="card border-light mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"> @Html.DisplayFor(modelItem => item.productoNombre) </h5>
+
+                            <p style="text-align:center;">
+                                <img src="~/Imagenes/@Html.DisplayFor(modelItem => item.productoId) .jpg" class="card-img-top center" style="width:175px;height:150px;">
+                            </p>
+                            <p class="card-text text-center">$  @Html.DisplayFor(modelItem => item.productoPrecio) .00</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
