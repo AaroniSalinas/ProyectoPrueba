@@ -15,7 +15,7 @@
             if (item.subcategoria.subcategoriaNombre == "Labios")
             {
                 <div class="col-sm">
-                    <div class="card border-light mb-3" style="width: 18rem;">
+                    <div class="card border-light mb-3" style="width: 18rem;"onclick="location.href='vistaProducto/@Html.DisplayFor(modelItem => item.productoId)';" style="cursor: pointer;">
                         <div class="card-body">
                             <h5 class="card-title text-center"> @Html.DisplayFor(modelItem => item.productoNombre) </h5>
 

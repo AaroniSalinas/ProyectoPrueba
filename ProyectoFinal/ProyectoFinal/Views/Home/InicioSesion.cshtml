@@ -1,4 +1,44 @@
-﻿@{
+﻿
+@model IEnumerable<ProyectoFinal.usuario>
+
+
+@{
+    ViewBag.Title = "InicioSesion";
+}
+
+
+
+
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-info">
+            @ViewBag.Message;
+        </div>
+    }
+}
+<form action="/Home/InicioSesion" method="post">
+    <div class="form-group mb-3">
+        <label>Usuario:</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+            <input type="email" class="form-control" name="correo" id="correo" value="">
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label>Contraseña:</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+            <input type="password" class="form-control" name="contrasena" id="contrasena" value="">
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <input class="btn btn-primary" type="submit" value="Entrar" />
+    </div>
+</form>
+<!--
+@{
     if (!string.IsNullOrEmpty(ViewBag.Message))
     {
         <div class="alert alert-info">
@@ -7,9 +47,6 @@
     }
 }
 
-@{
-    ViewBag.Title = "InicioSesion";
-}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -48,14 +85,14 @@
                 <form>
                     <div class="email-box">
                         <label class="has-float-label">
-                            <input class="form-control input-box" type="email" placeholder="" />
+                            <input class="form-control input-box" type="email" placeholder="" name="usuarioCorreo" id="usuarioCorreo" />
                             <span>Correo electrónico</span>
                         </label>
                     </div>
 
                     <div class="password-box">
                         <label class="has-float-label">
-                            <input class="form-control input-box" type="password" placeholder="" />
+                            <input class="form-control input-box" type="password" placeholder="" name="usuarioContrasenia" id="usuarioContrasenia"/>
                             <span>Contraseña</span>
                         </label>
                     </div>
@@ -65,42 +102,37 @@
                     </div>
 
                     <div class="login-button">
-                        <a class="btn btn-default" href="~/Home/PerfilCliente" style="text-transform: uppercase !important;font-size: 25px !important;font-family: 'League Gothic', arial !important;color: #ede5db !important;background-color: #6d5b4b !important;box-shadow: 7px 7px #d1b5a3 !important;width: 50% !important;border-color: #6d5b4b !important;border-radius: 0;">
+                        <a class="btn btn-default" type="submit" value="Entrar" style="text-transform: uppercase !important;font-size: 25px !important;font-family: 'League Gothic', arial !important;color: #ede5db !important;background-color: #6d5b4b !important;box-shadow: 7px 7px #d1b5a3 !important;width: 50% !important;border-color: #6d5b4b !important;border-radius: 0;">
                             <span>Iniciar sesión</span>
                             <i class="fas fa-long-arrow-alt-right"></i>
                         </a>
-                        <!--
-                            <button type="submit">
-                                <span>Iniciar sesión</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </button>
-                        */-->
+
                     </div>
                 </form>
             </div>
 
-            <div class="right col align-self-center">
-                <div style="margin-top: 30px;">
-                    <div class="login-fb  d-flex justify-content-center">
-                        <button>
-                            <a  class="colorp-dark href="https://www.facebook.com/" </a>
-                            <span>Facebook</span>
-                            <i class="fab fa-facebook"></i>
-                        </button>
-                    </div>
+<div class="right col align-self-center">
+    <div style="margin-top: 30px;">
+        <div class="login-fb  d-flex justify-content-center">
 
-                    <div class="login-google  d-flex justify-content-center">                   
-                        <button>
-                            <a class="colorp-dark" href="https://accounts.google.com/Login?hl=es" </a>
-                            <span>Google</span>
-                            <i  class="fab fa-google"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <button>
+                <a class="colorp-dark" href="https://www.facebook.com/" </a>
+                <span>Facebook</span>
+                <i class="fab fa-facebook"></i>
+            </button>
+
+        </div>
+        <div class="login-google  d-flex justify-content-center">
+            <button>
+                <a class="colorp-dark" href="https://accounts.google.com/Login?hl=es" </a>
+                <span>Google</span>
+                <i class="fab fa-google"></i>
+            </button>
         </div>
     </div>
-
+</div>
+        </div>
+    </div>
 </body>
-</html>
 
+</html>-->

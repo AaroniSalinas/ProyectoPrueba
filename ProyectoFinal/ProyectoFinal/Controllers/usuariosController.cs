@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ProyectoFinal
 {
-    [Authorize]
+   
     public class usuariosController : Controller
     {
         private masterEntities db = new masterEntities();

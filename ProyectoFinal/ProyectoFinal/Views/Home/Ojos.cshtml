@@ -15,7 +15,7 @@
             if (item.subcategoria.subcategoriaNombre == "Ojos")
             {
                 <div class="col-sm">
-                    <div class="card border-light mb-3" style="width: 18rem;">
+                    <div class="card border-light mb-3" style="width: 18rem;" onclick="location.href='vistaProducto/@Html.DisplayFor(modelItem => item.productoId)';" style="cursor: pointer;">
                         <div class="card-body">
                             <h5 class="card-title text-center"> @Html.DisplayFor(modelItem => item.productoNombre) </h5>
 
@@ -23,6 +23,7 @@
                                 <img src="~/Imagenes/@Html.DisplayFor(modelItem => item.productoId) .jpg" class="card-img-top center" style="width:175px;height:150px;">
                             </p>
                             <p class="card-text text-center">$  @Html.DisplayFor(modelItem => item.productoPrecio) .00</p>
+
                         </div>
                     </div>
                 </div>

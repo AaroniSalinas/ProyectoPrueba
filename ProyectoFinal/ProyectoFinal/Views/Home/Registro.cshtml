@@ -1,4 +1,5 @@
-﻿
+﻿@model ProyectoFinal.usuario
+
 @{
     ViewBag.Title = "Registro";
 }
@@ -17,50 +18,55 @@
 </style>
 <cente>
     <h2>Registro</h2>
- <cente>
+    <cente>
 
         <div class="registro row">
             <div class="registro col-md-7" style="border-right: 1px solid #AB8B76 ">
-                <form>
+
+                <form method="post">
 
                     <span class="registro has-float-label">
-                        <input class="registro form-control" id="Name" name="Name" type="text" placeholder="Nombre" />
                         <label for="Nombre">Nombres</label>
+                        @Html.EditorFor(model => model.usuarioNombre, new { htmlAttributes = new { @class = "registro form-control", id = "Name", name = "Name", type = "text", placeholder = "Nombre" } })
+                        @Html.ValidationMessageFor(model => model.usuarioNombre, "", new { @class = "text-danger" })
+                        
                     </span>
 
 
                     <span class="registro has-float-label">
-                        <input class="registro form-control" id="Ape" name="Ape" type="text" placeholder="Apellidos" />
                         <label for="Apellidos">Apellidos</label>
+                        @Html.EditorFor(model => model.usuarioApellido, new { htmlAttributes = new { @class = "registro form-control", id = "Ape", name = "Ape", type = "text", placeholder = "Apellidos" } })
+                        @Html.ValidationMessageFor(model => model.usuarioApellido, "", new { @class = "text-danger" })
+
                     </span>
 
                     <span class="registro has-float-label">
-                        <input class="registro form-control" id="Correo" name="Correo" type="text" placeholder="Correo Electrónico" />
                         <label for="Correo">Correo Electrónico</label>
+                        @Html.EditorFor(model => model.usuarioCorreo, new { htmlAttributes = new { @class = "registro form-control", id = "Correo", name = "Correo", type = "text", placeholder = "Correo Electrónico" } })
+                        @Html.ValidationMessageFor(model => model.usuarioCorreo, "", new { @class = "text-danger" })
+
+
                     </span>
 
-                    <span class="registro has-float-label">
-                        <input class="registro form-control" id="CCorreo" name="CCorreo" placeholder="Confirmación de Correo" />
-                        <label for="ConCorreo">Confirmación de Correo</label>
-                    </span>
 
                     <span class="registro has-float-label">
-                        <input class="registro form-control" id="Telf" name="Telf" placeholder="Teléfono" />
                         <label for="Telf">Teléfono</label>
+                        @Html.EditorFor(model => model.usuarioTelefono, new { htmlAttributes = new { @class = "registro form-control", id = "Telf", name = "Telf", placeholder = "Teléfono" } })
+                        @Html.ValidationMessageFor(model => model.usuarioTelefono, "", new { @class = "text-danger" })
                     </span>
 
                     <span class="registro has-float-label">
-                        <input class="registro form-control" id="Contra" name="Contra" type="password" placeholder="Contraseña" />
                         <label for="Contra">Contraseña</label>
+                       
+                        @Html.EditorFor(model => model.usuarioContrasenia, new { htmlAttributes = new { @class = "registro form-control", id = "Contra", name = "Contra", type = "password", placeholder = "Contraseña" } })
+                        @Html.ValidationMessageFor(model => model.usuarioContrasenia, "", new { @class = "text-danger" })
+
                     </span>
 
-                    <span class="registro has-float-label">
-                        <input class="registro form-control" id="CContra" name="CContra" type="password" placeholder="Confirmación de Contraseña" />
-                        <label for="CContra">Confirmación de Contraseña</label>
-                    </span>
+
                     <cente>
 
-                        <button type="button" onclick="location.href='/Home/PerfilCliente'" class="registro btn btn-lg col-md-6" style=' color: white; background-color: #AB8B76 !important; border: 1px solid #AB8B76 !important; box-shadow:  5px 10px #D1B5A3'>
+                        <button type="submit" value="Create" class="registro btn btn-lg col-md-6" style=' color: white; background-color: #AB8B76 !important; border: 1px solid #AB8B76 !important; box-shadow:  5px 10px #D1B5A3'>
                             REGISTRO
 
                         </button>

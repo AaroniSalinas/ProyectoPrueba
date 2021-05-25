@@ -1,4 +1,5 @@
-﻿using System;
+﻿ 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,7 +38,6 @@ namespace ProyectoFinal.Controllers
             return View();
         }
 
-      
         public ActionResult InicioSesion(string mensaje = "")
         {
             ViewBag.Message = mensaje;
@@ -50,22 +50,32 @@ namespace ProyectoFinal.Controllers
             if (!string.IsNullOrEmpty(correo) && !string.IsNullOrEmpty(contrasena))
             {
                 masterEntities db = new masterEntities();
-                usuario users = db.usuario.FirstOrDefault(e => e.usuarioCorreo == correo &&
-                e.usuarioContrasenia == contrasena);
-                if (users != null)
+                usuario user = db.usuario.FirstOrDefault(e => e.usuarioCorreo == correo &&
+               e.usuarioContrasenia == contrasena);
+
+                if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(users.usuarioCorreo, true);
-                    return RedirectToAction("Inicio", "Home");
+                    @HttpCookie cookie1 = new @HttpCookie("usuarioNombre", user.usuarioNombre);
+                    @Response.Cookies.Add(cookie1);
+                    FormsAuthentication.SetAuthCookie(user.usuarioId + "|" + user.usuarioNombre, true);
+                    return RedirectToAction("perfilCliente", "Home");
                 }
                 else
                 {
-                    return RedirectToAction("Inicio", new { message = "Usario/Contraseña inválidos" });
+                    return RedirectToAction("InicioSesion", new { message = "Usario/Contraseña inválidos" });
                 }
             }
             else
             {
-                return RedirectToAction("Inicio", new { message = "Escribe tu usuario y contraseña" });
+                return RedirectToAction("InicioSesion", new { message = "Escribe tu usuario y contraseña" });
             }
+        }
+
+        [Authorize]
+        public ActionResult PerfilCliente()
+        {
+           
+            return View();
         }
         [Authorize]
         public ActionResult Logout()
@@ -73,14 +83,25 @@ namespace ProyectoFinal.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Inicio");
         }
-        public ActionResult PerfilCliente()
-        {
-            return View();
-        }
 
         public ActionResult Registro()
         {
+
             return View();
+        }
+
+        [HttpPost]
+       
+        public ActionResult Registro([Bind(Include = "usuarioId,usuarioCorreo,usuarioNombre,usuarioApellido,usuarioTelefono,usuarioContrasenia")] usuario usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                db.usuario.Add(usuario);
+                db.SaveChanges();
+                return RedirectToAction("PerfilCliente");
+            }
+
+            return View(usuario);
         }
         public ActionResult Carrito()
         {
@@ -102,7 +123,7 @@ namespace ProyectoFinal.Controllers
         {
             var orden = db.orden.Include(o => o.status).Include(o => o.usuario);
             return View(orden.ToList());
-            
+
         }
 
 
@@ -114,12 +135,21 @@ namespace ProyectoFinal.Controllers
         public ActionResult Inicio()
         {
             var producto = db.producto.Include(p => p.categoria).Include(p => p.subcategoria);
-            return View(producto.ToList()); 
+            return View(producto.ToList());
         }
 
-        public ActionResult vistaProducto()
+        public ActionResult vistaProducto(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            producto producto = db.producto.Find(id);
+            if (producto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(producto);
         }
 
         public ActionResult Labios()

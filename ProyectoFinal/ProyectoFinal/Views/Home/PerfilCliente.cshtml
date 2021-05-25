@@ -1,4 +1,6 @@
-﻿
+﻿@model ProyectoFinal.usuario
+
+
 @{
     ViewBag.Title = "PerfilCliente";
 }
@@ -35,31 +37,19 @@
                 <div class="row">
                     <div class="col">
                         <div class="welcome-message">
-                            <p>Hola xxxx xxxx</p>
+                            <p>Hola @Request.Cookies["usuarioNombre"].Value </p>
                         </div>
                     </div>
 
-                    <div class="col d-flex justify-content-end">
+                    <!--<div class="col d-flex justify-content-end">
                         <div class="logout-message">
-                            ¿No eres xxxx xxxx? 
+                            ¿No eres xxxx xxxx?
                             <a href="">Cerrar sesión</a>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
 
-                <div class="row">
-                    <div class="col">
-                        <div class="coupons">
-                            <p>Tus cupones</p>
-                        </div>
-                        
-                        <div class="coupons-info">
-                            <p> Actualmente no hay cupones disponibles.</p>
-                            <a href="">Conoce más</a>
-                        </div>
-                    </div>
-                </div>
 
 
                 <div class="row">
@@ -67,7 +57,7 @@
                         <div class="just-seen d-flex justify-content-center" style="margin-top: 40px;">
                             <p>Vistos recientemente</p>
                         </div>
-                        
+
                         <div class="row d-flex justify-content-center">
                             <div class="col col-md-auto">
                                 <div class="card" style="width: 15rem;">
@@ -116,13 +106,7 @@
                             <a href="">Mi cuenta</a>
                         </li>
 
-                        <li>
-                            <a href="/Home/PerfilCliente">Datos personales</a>
-                        </li>
 
-                        <li>
-                            <a href="">Tus preferencias</a>
-                        </li>
 
                         <li>
                             <a href="/Home/Direccion">Direcciones</a>
@@ -132,42 +116,12 @@
                             <a href="/Home/HistorialUsuario">Historial de Pedidos</a>
                         </li>
 
-                        <li>
-                            <a class="btn disabled" href="#">Lista de Deseos</a>
-                        </li>
+
                     </ul>
 
-                    <hr/>
+                    <hr />
 
-                    <ul>
-                        <li class="title-nav-account">
-                            <a class="btn disabled" href="#">¿Necesitas ayuda?</a>
-                        </li>
 
-                        <li>
-                            <a href="/Home/Inicio">Productos</a>
-                        </li>
-
-                        <li>
-                            <a class="btn disabled" href="#">Pedidos y formas de pago</a>
-                        </li>
-
-                        <li>
-                            <a class="btn disabled" href="#">Entrega</a>
-                        </li>
-
-                        <li>
-                            <a class="btn disabled" href="#">Promociones y códigos de descuento</a>
-                        </li>
-
-                        <li>
-                            <a class="btn disabled" href="#">Devoluciones y reembolsos</a>
-                        </li>
-
-                        <li>
-                            <a class="btn disabled" href="#">Información de la empresa</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
