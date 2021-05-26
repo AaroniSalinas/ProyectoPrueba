@@ -1,8 +1,8 @@
-﻿@model ProyectoFinal.usuario
+﻿@model IEnumerable<ProyectoFinal.producto>
 
 
 @{
-    ViewBag.Title = "PerfilCliente";
+    ViewBag.Title = "Mi Cuenta";
 }
 
 
@@ -41,12 +41,6 @@
                         </div>
                     </div>
 
-                    <!--<div class="col d-flex justify-content-end">
-                        <div class="logout-message">
-                            ¿No eres xxxx xxxx?
-                            <a href="">Cerrar sesión</a>
-                        </div>
-                    </div>-->
                 </div>
 
 
@@ -57,42 +51,21 @@
                         <div class="just-seen d-flex justify-content-center" style="margin-top: 40px;">
                             <p>Vistos recientemente</p>
                         </div>
-
                         <div class="row d-flex justify-content-center">
-                            <div class="col col-md-auto">
-                                <div class="card" style="width: 15rem;">
-                                    <img src="~/Imagenes/grey box.jpg" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-text"><strong>Producto A</strong></h5>
-                                        <h6 class="card-text">$123.45</h6>
-                                        <p class="card-text">Aenean non justo non quam. </p>
+                            @for (int i = 1; i <= 27; i += 9)
+                            {
+                                <div class="col col-md-auto">
+                                    <div class="card" style="width: 15rem;"onclick=" location.href = 'vistaProducto/@Model.ElementAt(i).productoId';" style="cursor: pointer;">
+                                        <img src="~/Imagenes/@Model.ElementAt(i).productoId .jpg" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-text"><strong>@Model.ElementAt(i).productoNombre</strong></h5>
+                                            <h6 class="card-text">$ @Model.ElementAt(i).productoPrecio .00</h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col col-md-auto">
-                                <div class="card" style="width: 15rem;">
-                                    <img src="~/Imagenes/grey box.jpg" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-text"><strong>Producto B</strong></h5>
-                                        <h6 class="card-text">$123.45</h6>
-                                        <p class="card-text">Quisque a dui sed quam. </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col col-md-auto">
-                                <div class="card" style="width: 15rem;">
-                                    <img src="~/Imagenes/grey box.jpg" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-text"><strong>Producto C</strong></h5>
-                                        <h6 class="card-text">$123.45</h6>
-                                        <p class="card-text">Sed ornare elementum odio.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                            }
+                         </div>
                     </div>
                 </div>
             </div>

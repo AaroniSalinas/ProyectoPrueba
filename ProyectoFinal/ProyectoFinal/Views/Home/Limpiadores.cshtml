@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Limpiadores</h2>
+<h2 class="colorp-dark">LIMPIADORES</h2>
 
 <div class="container">
     <div class="row">
@@ -17,12 +17,12 @@
                 <div class="col-sm">
                     <div class="card border-light mb-3" style="width: 18rem;"onclick="location.href='vistaProducto/@Html.DisplayFor(modelItem => item.productoId)';" style="cursor: pointer;">
                         <div class="card-body">
-                            <h5 class="card-title text-center"> @Html.DisplayFor(modelItem => item.productoNombre) </h5>
+                            <h5 class="card-title text-center colorp-medium"> @Html.DisplayFor(modelItem => item.productoNombre) </h5>
 
                             <p style="text-align:center;">
                                 <img src="~/Imagenes/@Html.DisplayFor(modelItem => item.productoId) .jpg" class="card-img-top center" style="width:175px;height:150px;">
                             </p>
-                            <p class="card-text text-center">$  @Html.DisplayFor(modelItem => item.productoPrecio) .00</p>
+                            <p class="card-text text-center colorp-medium">$  @Html.DisplayFor(modelItem => item.productoPrecio) .00</p>
                         </div>
                     </div>
                 </div>

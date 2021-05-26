@@ -74,8 +74,9 @@ namespace ProyectoFinal.Controllers
         [Authorize]
         public ActionResult PerfilCliente()
         {
-           
-            return View();
+            var producto = db.producto.Include(p => p.categoria).Include(p => p.subcategoria);
+            return View(producto.ToList());
+
         }
         [Authorize]
         public ActionResult Logout()
@@ -105,10 +106,24 @@ namespace ProyectoFinal.Controllers
         }
         public ActionResult Carrito()
         {
-            var orden = db.orden.Include(o => o.status).Include(o => o.usuario);
-            return View(orden.ToList());
+            var producto = db.producto.Include(p => p.categoria).Include(p => p.subcategoria);
+            return View(producto.ToList());
         }
 
+
+        //public ActionResult Carrito(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    producto producto = db.producto.Find(id);
+        //    if (producto == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(producto);
+        //}
         public ActionResult VerCarrito()
         {
             return View();
@@ -121,9 +136,8 @@ namespace ProyectoFinal.Controllers
 
         public ActionResult HistorialUsuario()
         {
-            var orden = db.orden.Include(o => o.status).Include(o => o.usuario);
-            return View(orden.ToList());
-
+            var producto = db.producto.Include(p => p.categoria).Include(p => p.subcategoria);
+            return View(producto.ToList());
         }
 
 

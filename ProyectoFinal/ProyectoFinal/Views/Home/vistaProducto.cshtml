@@ -1,9 +1,12 @@
-﻿@model ProyectoFinal.producto
+﻿
+@model ProyectoFinal.producto
+
+
 @{
-    ViewBag.Title = "vistaProducto";
+    ViewBag.Title = Model.productoNombre;
 }
 
-<h1>@Html.DisplayFor(model => model.productoNombre) </h1>
+<h1 class="colorp-dark">@Html.DisplayFor(model => model.productoNombre) </h1>
 
 <div class="container-fluid">
     <div class="row">
@@ -12,21 +15,38 @@
 
                 <div class="card-body">
                     <p style="text-align:center;">
-                        <img src="~/Imagenes/@Html.DisplayFor(model => model.productoId) .jpg"  class="card-img-top center" style="width:350px;height:375px;">
+                        <img src="~/Imagenes/@Html.DisplayFor(model => model.productoId) .jpg" class="card-img-top center" style="width:350px;height:375px;">
                     </p>
-                   
+
                 </div>
             </div>
         </div>
         <div class="col-sm-auto">
 
-            <h3> $ @Html.DisplayFor(model => model.productoPrecio) </h3>
-            <button type="button" class="btn btn-dark" onclick="location.href='/Home/Carrito'">
+            <h3 class="colorp-medium"> $ @Html.DisplayFor(model => model.productoPrecio) </h3>
+            <button type="button" class="btn btn-dark bgp-light colorp-dark" style="cursor: pointer;" id="AgregarCarrito">
                 AGREGAR A CARRITO
             </button>
 
 
-            <!--<p>Entrega Aproximada: ${date:Insert datetime string ()}</p>-->
+            <p class="colorp-dark">Fecha estimada de entrega:</p>
+            <p id="FechaEntrega" class="colorp-dark"></p>
+
+            <script>
+                document.getElementById('AgregarCarrito').onclick = function () {
+                    alert('Producto añadido a tu carrito');
+                }
+            </script>
+            <SCRIPT>
+                let numWeeks = 1;
+                let now = new Date();
+                now.setDate(now.getDate() + numWeeks * 7);
+                let day = now.getDay();
+                let month = now.getMonth() + 1;
+                let year = now.getFullYear();
+                document.getElementById("FechaEntrega").innerHTML = day + "/" + month + "/" + year;
+            </script>
+
         </div>
     </div>
 </div>

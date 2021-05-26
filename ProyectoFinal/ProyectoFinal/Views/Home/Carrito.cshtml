@@ -1,10 +1,11 @@
-﻿
+﻿@model IEnumerable<ProyectoFinal.producto>
+
 @{
     ViewBag.Title = "Carrito";
 }
 
 @*<h2>Orden XXX - XXX</h2>
-Añade $XXX.XX para tener un envío gratis*@
+    Añade $XXX.XX para tener un envío gratis*@
 <style>
     /*.productos {
         border-right: dashed;
@@ -13,153 +14,122 @@ Añade $XXX.XX para tener un envío gratis*@
     .producto1 {
         overflow: hidden;
         display: flex;
-        border:2px solid silver;
-        margin-bottom:10px;
+        border: 2px solid silver;
+        margin-bottom: 10px;
     }
 
         .producto1 img {
-        margin-top: 5px;
-        margin-left: 5px;
-        /*width:150px;
+            margin-top: 5px;
+            margin-left: 5px;
+            /*width:150px;
         height:130px;*/
-        width:300px;
-        height:200px;
+            width: 300px;
+            height: 200px;
         }
 
-    .producto1-inf{
-        padding:15px;
+    .producto1-inf {
+        padding: 15px;
     }
 
-    .producto1-elim{
-        position:relative;
+    .producto1-elim {
+        position: relative;
         /*left:350px;
         bottom: 115px;*/
-        left:230%;
+        left: 230%;
         bottom: 60%;
     }
+
     .producto1-cant {
         position: relative;
         /*left: 240px;
         bottom: 70px;*/
-        left:150%;
+        left: 150%;
         bottom: 37%;
     }
-    .producto1-cant input{
-        width:40px;
-        text-align:center;
 
-    }
+        .producto1-cant input {
+            width: 40px;
+            text-align: center;
+        }
+
     .total {
-        margin-top:12px;
+        margin-top: 12px;
         border: 2px solid silver;
         padding: 15px;
     }
-    .total p{
-        display:flex;
-        justify-content:space-between;
-        font-size:15px;
-    }
-    .total a{
-        display:block;
-        text-align:center;
-        background-color: black;
-        color:white;
-    }
+
+        .total p {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+        }
+
+        .total a {
+            display: block;
+            text-align: center;
+            background-color: black;
+            color: white;
+        }
 
     .left {
         border-right: thin solid #ab8b76;
     }
 </style>
 
+<h1 class="colorp-dark">CARRITO DE COMPRAS</h1>
+<br />
 <div class="container">
-    @*<h1>Orden XXX - XXX</h1>
-    Añade $XXX.XX para tener un envío gratis*@
+
+
+    @for (int i = 1; i <= 27; i += 9)
+    {
+        <div class="row">
+            <div class="col-sm">
+                <p style="text-align:center;">
+                    <img src="~/Imagenes/@Model.ElementAt(i).productoId .jpg" class="card-img-top center" style="width:175px;height:150px;">
+                </p>
+            </div>
+            <div class="col-sm">
+                <h2 class="card-title text-center colorp-dark">@Model.ElementAt(i).productoNombre</h2>
+            </div>
+            <div class="col-sm">
+                <h2 class="card-text text-center colorp-medium">$ @Model.ElementAt(i).productoPrecio</h2>
+            </div>
+
+
+        </div>
+    }
+
+
     <div class="row">
-        <div class="col-lg-8 productos left">
-            <h1>Orden XXX - XXX</h1>
-            <h6 style="text-decoration:underline;">Añade $XXX.XX para tener un envío gratis</h6>
-            <div class="producto1">
-                <img src="~/Imagenes/" />
-                <div class="producto1-inf">
-                    <h4 class="producto1-nombre">
-                        PRODUCTO XXXX
-                    </h4>
-                    <h4 class="producto1-tamaño">
-                        TALLA XX
-                    </h4>
-                    <h4 class="producto1-precio">
-                        $ XXXX.XX
-                    </h4>
-                    <p class="producto1-cant">
-                        CANT.
-                        <input value="1" />
-                    </p>
-                    <p class="producto1-elim">
-                        <i class="fas fa-times"></i>
-                    </p>
-                </div>
-            </div>
-
-            <div class="producto1">
-                <img src="~/Imagenes/" />
-                <div class="producto1-inf">
-                    <h4 class="producto1-nombre">
-                        PRODUCTO XXXX
-                    </h4>
-                    <h4 class="producto1-tamaño">
-                        TALLA XX
-                    </h4>
-                    <h4 class="producto1-precio">
-                        $ XXXX.XX
-                    </h4>
-                    <p class="producto1-cant">
-                        CANT.
-                        <input value="1" />
-                    </p>
-                    <p class="producto1-elim">
-                        <i class="fas fa-times"></i>
-                    </p>
-                </div>
-            </div>
+        <div class="col-sm">
+            <h1 class="colorp-dark"></h1>
         </div>
-        <div class="col-lg-4">
-            <h2 style="text-align:center; margin-top:30px;">PROCEDER AL PAGO</h2>
-            <br />
-            <div class="total">
-                <p>
-                    <span>Productos</span>
-                    <span>XXX</span>
-                </p>
-
-                <p>
-                    <span>Subtotal</span>
-                    <span>XXX</span>
-                </p>
-
-                <p>
-                    <span>Envío</span>
-                    <span>XXX</span>
-                </p>
-
-                <p>
-                    <span>Código de descuento</span>
-                    <span>XXX</span>
-                </p>
-
-                <p>
-                    <span>Total</span>
-                    <span>XXX</span>
-                </p>
-
-                <a href="#">Pagar</a>
-            </div>
+        <div class="col-sm">
+            <h1 class="colorp-dark  text-center">TOTAL</h1>
         </div>
-        @*<div class="col-xl-8 col-lg-6 col-md-4">.col-xl-8 .col-lg-6 .col-md-4</div>
-        <div class="col-lg-6 col-md-4">.col-lg-6 .col-md-4</div>*@
-        @*<div class="col-6 col-md-4">.col-6 .col-md-4</div>
-            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-            <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-            <div class="col-6 col-md-4">.col-6 .col-md-4</div>*@
+        <div class="col-sm">
+            <h2 class="colorp-dark  text-center"> $1,415</h2>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <h4 class="colorp-medium" >Fecha estimada de entrega: </h4>
+            <h4 class="colorp-medium" id="FechaEntrega"> </h4>
+            <script>
+                let numWeeks = 1;
+                let now = new Date();
+                now.setDate(now.getDate() + numWeeks * 7);
+                let day = now.getDay();
+                let month = now.getMonth() + 1;
+                let year = now.getFullYear();
+                document.getElementById("FechaEntrega").innerHTML = day + "/" + month + "/" + year;
+            </script>
+        </div>
+        
+
+    </div>
+
 
 </div>

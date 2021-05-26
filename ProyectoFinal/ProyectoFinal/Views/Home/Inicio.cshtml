@@ -4,20 +4,22 @@
     ViewBag.Title = "Inicio";
 }
 
-<h1>Destacados</h1>
+<h1 class="colorp-dark">
+    <p>DESTACADOS</p>
+</h1>
 <div class="container">
     <div class="row">
         @for (int i = 1; i <= 27; i += 4)
         {
             <div class="col-sm">
-                <div class="card border-light mb-3" style="width: 18rem;">
+                <div class="card border-light mb-3" style="width: 18rem;"onclick=" location.href = 'vistaProducto/@Model.ElementAt(i).productoId';" style="cursor: pointer;" >
                     <div class="card-body">
-                        <h5 class="card-title text-center">@Model.ElementAt(i).productoNombre</h5>
-                       
+                        <h5 class="card-title text-center colorp-medium">@Model.ElementAt(i).productoNombre</h5>
+
                         <p style="text-align:center;">
                             <img src="~/Imagenes/@Model.ElementAt(i).productoId .jpg" class="card-img-top center" style="width:175px;height:150px;">
                         </p>
-                        <p class="card-text text-center">$ @Model.ElementAt(i).productoPrecio .00</p>
+                        <p class="card-text text-center colorp-medium">$ @Model.ElementAt(i).productoPrecio .00</p>
                     </div>
                 </div>
             </div>

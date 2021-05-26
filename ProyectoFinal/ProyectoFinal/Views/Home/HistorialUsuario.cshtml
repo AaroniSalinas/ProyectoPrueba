@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<ProyectoFinal.producto>
+
 @{
     ViewBag.Title = "Historial Usuario";
 }
@@ -15,52 +16,48 @@
     <tbody>
         <tr>
             <th scope="row" style="width: 12rem;">
-                <big>ORDEN XXX-XXX</big><br>
-                $XXXX.XX<br>
-                <small>Entrega: </small> DD/MM/AA
+                <big>ORDEN 1</big><br>
+                $1,270<br>
+                <small>Entrega: </small> 13/01/2021
             </th>
-            <td style="width: 12rem;">IMAGEN DEL PRODUCTO</td>
+            <td style="width: 12rem;"><img src="~/Imagenes/@Model.ElementAt(1).productoId .jpg" class="card-img-top center" style="width:175px;height:150px;"></td>
             <td style="width: 12rem;">
-                <big>Producto XXXX</big><br>
-                Talla XX<br>
-                $XXXX.XX
+                <big>@Model.ElementAt(1).productoNombre</big><br>
+                $@Model.ElementAt(1).productoPrecio
             </td>
-            <td style="width: 12rem;">IMAGEN DEL PRODUCTO</td>
+            <td style="width: 12rem;"><img src="~/Imagenes/@Model.ElementAt(3).productoId .jpg" class="card-img-top center" style="width:175px;height:150px;"></td>
             <td style="width: 12rem;">
-                <big>Producto XXXX</big><br>
-                Talla XX<br>
-                $XXXX.XX
+                <big>@Model.ElementAt(3).productoNombre</big><br>
+                $@Model.ElementAt(3).productoPrecio
             </td>
         </tr>
         <tr>
             <th scope="row" style="width: 12rem;">
-                <big>ORDEN XXX-XXX</big><br>
-                $XXXX.XX<br>
-                <small>Entrega: </small>DD/MM/AA
+                <big>ORDEN 2</big><br>
+                $855<br>
+                <small>Entrega: </small>21/04/2021
             </th>
-            <td style="width: 12rem;">IMAGEN DEL PRODUCTO</td>
+            <td style="width: 12rem;"><img src="~/Imagenes/@Model.ElementAt(15).productoId .jpg" class="card-img-top center" style="width:175px;height:150px;"></td>
             <td style="width: 12rem;">
-                <big>Producto XXXX</big><br>
-                Talla XX<br>
-                $XXXX.XX
+                <big>@Model.ElementAt(15).productoNombre</big><br>
+                $@Model.ElementAt(15).productoPrecio
+            </td>
         </tr>
         <tr>
             <th scope="row" style="width: 12rem;">
-                <big>ORDEN XXX-XXX</big><br>
-                $XXXX.XX<br>
-                <small>Entrega: </small>DD/MM/AA
+                <big>ORDEN 3</big><br>
+                $1,535<br>
+                <small>Entrega: </small>25/05/2021
             </th>
-            <td style="width: 12rem;">IMAGEN DEL PRODUCTO</td>
+            <td style="width: 12rem;"><img src="~/Imagenes/@Model.ElementAt(1).productoId .jpg" class="card-img-top center" style="width:175px;height:150px;"></td>
             <td style="width: 12rem;">
-                <big>Producto XXXX</big><br>
-                Talla XX<br>
-                $XXXX.XX
+                <big>@Model.ElementAt(1).productoNombre</big><br>
+                $@Model.ElementAt(1).productoPrecio
             </td>
-            <td style="width: 12rem;">IMAGEN DEL PRODUCTO</td>
+            <td style="width: 12rem;"><img src="~/Imagenes/@Model.ElementAt(20).productoId .jpg" class="card-img-top center" style="width:175px;height:150px;"></td>
             <td style="width: 12rem;">
-                <big>Producto XXXX</big><br>
-                Talla XX<br>
-                $XXXX.XX
+                <big>@Model.ElementAt(20).productoNombre</big><br>
+                $@Model.ElementAt(20).productoPrecio
             </td>
         </tr>
     </tbody>
